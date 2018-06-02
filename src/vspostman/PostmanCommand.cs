@@ -89,8 +89,8 @@ namespace vspostman
         private void Execute(object sender, EventArgs e)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            string message = string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.GetType().FullName);
-            string title = "PostmanCommand";
+            string message = "Under Development, See You Soon !!";
+            string title = "VS Postman";
 
             // Show a message box to prove we were here
             VsShellUtilities.ShowMessageBox(
