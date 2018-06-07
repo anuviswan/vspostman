@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using vspostman.Dialog;
 using Task = System.Threading.Tasks.Task;
 
 namespace vspostman
@@ -88,18 +89,8 @@ namespace vspostman
         /// <param name="e">Event args.</param>
         private void Execute(object sender, EventArgs e)
         {
-            ThreadHelper.ThrowIfNotOnUIThread();
-            string message = "Under Development, See You Soon !!";
-            string title = "VS Postman";
-
-            // Show a message box to prove we were here
-            VsShellUtilities.ShowMessageBox(
-                this.package,
-                message,
-                title,
-                OLEMSGICON.OLEMSGICON_INFO,
-                OLEMSGBUTTON.OLEMSGBUTTON_OK,
-                OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
+            var apiTestWindow = new ApiTestWindow();
+            apiTestWindow.ShowModal();
         }
     }
 }
