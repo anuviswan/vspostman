@@ -67,7 +67,7 @@
         <Parent guid="guidPostmanCommandPackageCmdSet" id="MyMenuGroup" />
         <Icon guid="guidImages" id="bmpPic1" />
         <Strings>
-          <ButtonText>Invoke PostmanCommand</ButtonText>
+          <ButtonText>VS Postman</ButtonText>
         </Strings>
       </Button>
     </Buttons>

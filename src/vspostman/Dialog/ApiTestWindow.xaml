@@ -9,20 +9,34 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Grid.Column="0" Grid.Row="0" Margin="10,10,10,0">
+        <Label Grid.Column="0" Grid.Row="0"  Content="VS Postman Lite" FontWeight="Bold"></Label>
+        <Grid Grid.Column="0" Grid.Row="1" Margin="10,10,10,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100"></ColumnDefinition>
                 <ColumnDefinition Width="50"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="100"></ColumnDefinition>
             </Grid.ColumnDefinitions>
+            
             <ComboBox Grid.Column="0"></ComboBox>
             <Label Grid.Column="1" Content="Url"></Label>
             <TextBox Grid.Column="2" Text="Test Url" FontStyle="Italic"></TextBox>
             <Button Grid.Column="3" Content="Send"></Button>
-        </Grid>
+                </Grid>
+        <StackPanel Orientation="Horizontal" Grid.Column="0"  Grid.Row="2" HorizontalAlignment="Right" >
+            <ToggleButton Content="JSON"></ToggleButton>
+            <ToggleButton Content="XAML"></ToggleButton>
+        </StackPanel>
+        
+        <TabControl Grid.Column="0" Grid.Row="3">
+            <TabItem Header="Pretty"></TabItem>
+            <TabItem Header="Raw"></TabItem>
+            <TabItem Header="Preview"></TabItem>
+        </TabControl>
     </Grid>
 </local:BaseDialogWindow>

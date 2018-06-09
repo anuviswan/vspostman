@@ -58,6 +58,7 @@
       <DependentUpon>ApiTestWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialog\BaseDialogWindow.cs" />
+    <Compile Include="HttpRequest\eRequestType.cs" />
     <Compile Include="PostmanCommand.cs" />
     <Compile Include="PostmanCommandPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
