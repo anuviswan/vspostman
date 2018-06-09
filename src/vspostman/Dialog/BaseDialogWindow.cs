@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace vspostman.Dialog
+namespace VsPostman.Dialog
 {
     public class BaseDialogWindow : DialogWindow
     {

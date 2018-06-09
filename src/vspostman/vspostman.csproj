@@ -23,7 +23,7 @@
     <ProjectGuid>{5728AC88-199F-43CA-B842-38E0042D0259}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>vspostman</RootNamespace>
+    <RootNamespace>VsPostman</RootNamespace>
     <AssemblyName>vspostman</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <GeneratePkgDefFile>true</GeneratePkgDefFile>

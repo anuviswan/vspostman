@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace vspostman.HttpRequest
+namespace VsPostman.HttpRequest
 {
     public enum eRequestType
     {

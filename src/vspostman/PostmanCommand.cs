@@ -5,10 +5,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
-using vspostman.Dialog;
+using VsPostman.Dialog;
 using Task = System.Threading.Tasks.Task;
 
-namespace vspostman
+namespace VsPostman
 {
     /// <summary>
     /// Command handler
