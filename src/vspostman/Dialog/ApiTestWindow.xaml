@@ -30,6 +30,7 @@
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Label Grid.Column="0" Grid.Row="0"  Content="VS Postman Lite" FontWeight="Bold"></Label>
         <Grid Grid.Column="0" Grid.Row="1" >
@@ -49,13 +50,17 @@
             <ToggleButton Content="JSON" Style="{StaticResource ToggleButton}"></ToggleButton>
             <ToggleButton Content="XAML" Style="{StaticResource ToggleButton}"></ToggleButton>
         </StackPanel>
-        
         <TabControl Grid.Column="0" Grid.Row="3">
-            <TabItem Header="Pretty">
-                <TextBlock></TextBlock>
-            </TabItem>
-            <TabItem Header="Raw"></TabItem>
-            <TabItem Header="Preview"></TabItem>
+            <TabItem Header="Authorization"></TabItem>
+            <TabItem Header="Headers"></TabItem>
+            <TabItem Header="Body"></TabItem>
+            <TabItem Header="Prerequest Scripts"></TabItem>
+        </TabControl>
+        
+        <TabControl Grid.Column="0" Grid.Row="4">
+            <TabItem Header="Body"></TabItem>
+            <TabItem Header="Cookies"></TabItem>
+            <TabItem Header="Headers"></TabItem>
         </TabControl>
     </Grid>
 </local:BaseDialogWindow>

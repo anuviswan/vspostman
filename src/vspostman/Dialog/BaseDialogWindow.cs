@@ -14,5 +14,6 @@ namespace VsPostman.Dialog
             HasMaximizeButton = true;
             HasMinimizeButton = true;
         }
+
     }
 }
