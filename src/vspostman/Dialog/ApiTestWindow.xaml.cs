@@ -24,5 +24,10 @@ namespace VsPostman.Dialog
         {
             InitializeComponent();
         }
+
+        private void SendRequest(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
