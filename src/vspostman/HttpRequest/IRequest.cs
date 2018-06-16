@@ -10,6 +10,7 @@ namespace VsPostman.HttpRequest
     {
         string Url { get; set; }
         void AddParameter(string parameterName, dynamic value);
+        void ClearParameters();
         void Get();
     }
 }

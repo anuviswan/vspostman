@@ -13,7 +13,7 @@ namespace VsPostman.HttpRequest
     public class ClientService : IRequest
     {
         private HttpClient _httpClient;
-        private static IAppCache _cache;
+        private IAppCache _cache;
         private IDictionary<string, dynamic> _parameterDictionary;
 
         public string Url { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
@@ -28,6 +28,8 @@ namespace VsPostman.HttpRequest
 
         public void Get()
         {
+            _httpClient.BaseAddress = new Uri(Url);
+            _httpClient.GetAsync(Url);
             
         }
 
@@ -36,6 +38,10 @@ namespace VsPostman.HttpRequest
             if (!_parameterDictionary.ContainsKey(parameterName))
                 _parameterDictionary.Add(parameterName, value);
         }
+
+        private string Parameters() => string.Join("&", _parameterDictionary.Select(pair => $"{pair.Key}={pair.Value}"));
+
+        public void ClearParameters() => _parameterDictionary.Clear();
     }
 }
 
