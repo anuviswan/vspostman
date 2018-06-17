@@ -5,8 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VsPostman.HttpRequest
 {
@@ -16,7 +14,7 @@ namespace VsPostman.HttpRequest
         private IAppCache _cache;
         private IDictionary<string, dynamic> _parameterDictionary;
 
-        public string Url { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string Url { get; set; }
 
         public ClientService(IMemoryCache cache)
         {
@@ -29,7 +27,7 @@ namespace VsPostman.HttpRequest
         public void Get()
         {
             _httpClient.BaseAddress = new Uri(Url);
-            _httpClient.GetAsync(Url);
+            _httpClient.GetAsync($"?{Parameters()}");
             
         }
 
