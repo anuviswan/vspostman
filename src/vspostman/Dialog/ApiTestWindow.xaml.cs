@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VsPostman.HttpRequest;
 
 namespace VsPostman.Dialog
 {
@@ -27,7 +28,19 @@ namespace VsPostman.Dialog
 
         private void SendRequest(object sender, RoutedEventArgs e)
         {
-
+            switch ((eRequestType)Enum.Parse(typeof(eRequestType), httpType.SelectedValue.ToString(), true))
+            {
+                case eRequestType.POST:
+                    break;
+                case eRequestType.GET:
+                    break;
+                case eRequestType.PUT:
+                    break;
+                case eRequestType.DELETE:
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
