@@ -1,10 +1,12 @@
 ﻿using LazyCache;
 using LazyCache.Providers;
 using Microsoft.Extensions.Caching.Memory;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace VsPostman.HttpRequest
 {
@@ -24,11 +26,17 @@ namespace VsPostman.HttpRequest
         }
 
 
-        public void Get()
+        public async Task<TResponse> Get<TResponse>()
         {
             _httpClient.BaseAddress = new Uri(Url);
-            _httpClient.GetAsync($"?{Parameters()}");
-            
+            var response = await _httpClient.GetAsync($"?{Parameters()}");
+            if (response.IsSuccessStatusCode)
+            {
+                var responseJson = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<TResponse>(responseJson);
+
+            }
+            return default;
         }
 
         public void AddParameter(string parameterName, dynamic value)

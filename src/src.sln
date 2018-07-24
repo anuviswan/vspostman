@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.27703.2018
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vspostman", "vspostman\vspostman.csproj", "{5728AC88-199F-43CA-B842-38E0042D0259}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWebApi", "TestWebApi\TestWebApi.csproj", "{48FB0A57-ADA3-4399-8C6F-72B534698620}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vspostman.TestWebApi", "TestWebApi\vspostman.TestWebApi.csproj", "{48FB0A57-ADA3-4399-8C6F-72B534698620}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vspostman.unittest", "vspostman.unittest\vspostman.unittest.csproj", "{11E4279C-6BEF-4A86-A76D-0A38DB7F248A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{48FB0A57-ADA3-4399-8C6F-72B534698620}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48FB0A57-ADA3-4399-8C6F-72B534698620}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48FB0A57-ADA3-4399-8C6F-72B534698620}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11E4279C-6BEF-4A86-A76D-0A38DB7F248A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11E4279C-6BEF-4A86-A76D-0A38DB7F248A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11E4279C-6BEF-4A86-A76D-0A38DB7F248A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11E4279C-6BEF-4A86-A76D-0A38DB7F248A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
