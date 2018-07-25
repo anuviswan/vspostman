@@ -18,9 +18,17 @@ namespace VsPostman.HttpRequest
 
         public string Url { get; set; }
 
+        public string ParameterString => string.Join("&", _parameterDictionary.Select(pair => $"{pair.Key}={pair.Value}"));
+
         public ClientService(IMemoryCache cache)
         {
             _cache = new CachingService(new MemoryCacheProvider(cache));
+            _httpClient = new HttpClient();
+            _parameterDictionary = new Dictionary<string, dynamic>();
+        }
+
+        public ClientService()
+        {
             _httpClient = new HttpClient();
             _parameterDictionary = new Dictionary<string, dynamic>();
         }
@@ -29,7 +37,7 @@ namespace VsPostman.HttpRequest
         public async Task<TResponse> Get<TResponse>()
         {
             _httpClient.BaseAddress = new Uri(Url);
-            var response = await _httpClient.GetAsync($"?{Parameters()}");
+            var response = await _httpClient.GetAsync($"?{ParameterString}");
             if (response.IsSuccessStatusCode)
             {
                 var responseJson = await response.Content.ReadAsStringAsync();
@@ -45,7 +53,7 @@ namespace VsPostman.HttpRequest
                 _parameterDictionary.Add(parameterName, value);
         }
 
-        private string Parameters() => string.Join("&", _parameterDictionary.Select(pair => $"{pair.Key}={pair.Value}"));
+         
 
         public void ClearParameters() => _parameterDictionary.Clear();
     }
