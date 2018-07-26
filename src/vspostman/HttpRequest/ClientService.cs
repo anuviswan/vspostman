@@ -42,7 +42,6 @@ namespace VsPostman.HttpRequest
             {
                 var responseJson = await response.Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<TResponse>(responseJson);
-
             }
             return default;
         }
