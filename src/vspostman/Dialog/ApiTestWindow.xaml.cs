@@ -26,13 +26,16 @@ namespace VsPostman.Dialog
             InitializeComponent();
         }
 
-        private void SendRequest(object sender, RoutedEventArgs e)
+        private async void SendRequest(object sender, RoutedEventArgs e)
         {
             switch ((eRequestType)Enum.Parse(typeof(eRequestType), httpType.SelectedValue.ToString(), true))
             {
                 case eRequestType.POST:
                     break;
                 case eRequestType.GET:
+                    var client = new ClientService();
+                    client.Url = requestedUrl.Text;
+                    var output = await client.Get<string>();
                     break;
                 case eRequestType.PUT:
                     break;
