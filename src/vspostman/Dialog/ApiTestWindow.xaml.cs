@@ -33,9 +33,11 @@ namespace VsPostman.Dialog
                 case eRequestType.POST:
                     break;
                 case eRequestType.GET:
-                    var client = new ClientService();
-                    client.Url = requestedUrl.Text;
-                    var output = await client.Get<string>();
+                    var client = new ClientService
+                    {
+                        Url = requestedUrl.Text
+                    };
+                    var output = await client.Get();
                     break;
                 case eRequestType.PUT:
                     break;

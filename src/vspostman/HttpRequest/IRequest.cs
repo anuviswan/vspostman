@@ -12,7 +12,7 @@ namespace VsPostman.HttpRequest
         string Url { get; set; }
         void AddParameter(string parameterName, dynamic value);
         void ClearParameters();
-        Task<TResponse> Get<TResponse>();
+        Task<string> Get();
         string ParameterString { get; }
     }
 }

@@ -1,10 +1,10 @@
 ﻿using LazyCache;
 using LazyCache.Providers;
 using Microsoft.Extensions.Caching.Memory;
-using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -12,7 +12,6 @@ namespace VsPostman.HttpRequest
 {
     public class ClientService : IRequest
     {
-        private HttpClient _httpClient;
         private IAppCache _cache;
         private IDictionary<string, dynamic> _parameterDictionary;
 
@@ -23,27 +22,25 @@ namespace VsPostman.HttpRequest
         public ClientService(IMemoryCache cache)
         {
             _cache = new CachingService(new MemoryCacheProvider(cache));
-            _httpClient = new HttpClient();
             _parameterDictionary = new Dictionary<string, dynamic>();
         }
 
         public ClientService()
         {
-            _httpClient = new HttpClient();
             _parameterDictionary = new Dictionary<string, dynamic>();
         }
 
 
-        public async Task<TResponse> Get<TResponse>()
+        public async Task<string> Get()
         {
-            _httpClient.BaseAddress = new Uri(Url);
-            var response = await _httpClient.GetAsync($"?{ParameterString}");
-            if (response.IsSuccessStatusCode)
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
+
+            using (HttpWebResponse response = (HttpWebResponse)await request.GetResponseAsync())
+            using (Stream stream = response.GetResponseStream())
+            using (StreamReader reader = new StreamReader(stream))
             {
-                var responseJson = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<TResponse>(responseJson);
+                return await reader.ReadToEndAsync();
             }
-            return default;
         }
 
         public void AddParameter(string parameterName, dynamic value)
