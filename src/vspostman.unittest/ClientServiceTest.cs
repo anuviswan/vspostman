@@ -1,4 +1,8 @@
 ﻿using System;
+using System.IO;
+using System.Net;
+using System.Text;
+using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using vspostman;
@@ -6,11 +10,16 @@ using VsPostman.HttpRequest;
 
 namespace vspostman.unittest
 {
+    
+
     [TestClass]
     public class ClientServiceTest
     {
         Mock<IRequest> _mock = new Mock<IRequest>();
+
+
         [TestMethod]
+        [TestCategory("Parameter Validation - Get Request")]
         public void AddParameters_SingleParameter()
         {
             var key = "testKey";
@@ -22,6 +31,7 @@ namespace vspostman.unittest
         }
 
         [TestMethod]
+        [TestCategory("Parameter Validation - Get Request")]
         public void AddParameters_MultipleParameter()
         {
             var key1 = "testKey1";
@@ -36,6 +46,7 @@ namespace vspostman.unittest
         }
 
         [TestMethod]
+        [TestCategory("Parameter Validation - Get Request")]
         public void ClearParameters_Test()
         {
             var key = "testKey";
@@ -48,6 +59,34 @@ namespace vspostman.unittest
             Assert.IsTrue(string.IsNullOrEmpty(clientService.ParameterString));
         }
 
+        [TestMethod]
+        public async Task SimpleGetRequest()
+        {
+            // arrange
+            var expected = "response content";
+            var expectedBytes = Encoding.UTF8.GetBytes(expected);
+            var responseStream = new MemoryStream();
+            responseStream.Write(expectedBytes, 0, expectedBytes.Length);
+            responseStream.Seek(0, SeekOrigin.Begin);
+
+            var response = new Mock<HttpWebResponse>();
+            response.Setup(c => c.GetResponseStream()).Returns(responseStream);
+
+            var request = new Mock<HttpWebRequest>();
+            request.Setup(c => c.GetResponseAsync()).Returns(Task.FromResult<WebResponse>(response.Object));
+
+            var factory = new Mock<IHttpWebRequestFactory>();
+            factory.Setup(c => c.Create(It.IsAny<string>()))
+                .Returns(request.Object);
+
+            // act
+            var clientService = new ClientService(factory.Object)
+                    {
+                        Url = "http://www.google.com"
+                    };
+            var actualRequest = await clientService.Get();
+            Assert.AreEqual(expected, actualRequest);
+        }
 
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -33,7 +34,7 @@ namespace VsPostman.Dialog
                 case eRequestType.POST:
                     break;
                 case eRequestType.GET:
-                    var client = new ClientService
+                    var client = new ClientService(new HttpWebRequestFactory())
                     {
                         Url = requestedUrl.Text
                         

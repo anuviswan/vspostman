@@ -2,7 +2,7 @@
 
 namespace VsPostman.HttpRequest
 {
-    public interface IHttpWebRequest
+    public interface IHttpWebRequestFactory
     {
         HttpWebRequest Create(string url);
     }

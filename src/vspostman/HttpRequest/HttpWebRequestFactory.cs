@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace VsPostman.HttpRequest
 {
-    public class HttpWebRequestHandler : IHttpWebRequest
+    public class HttpWebRequestFactory : IHttpWebRequestFactory
     {
         public HttpWebRequest Create(string url)
         {
