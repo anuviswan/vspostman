@@ -14,15 +14,16 @@ namespace VsPostman.HttpRequest
     {
         private IAppCache _cache;
         private IDictionary<string, dynamic> _parameterDictionary;
-
+        private IHttpWebRequest _webRequest;
         public string Url { get; set; }
 
         public string ParameterString => string.Join("&", _parameterDictionary.Select(pair => $"{pair.Key}={pair.Value}"));
 
-        public ClientService(IMemoryCache cache)
+        public ClientService(IMemoryCache cache, IHttpWebRequest webRequest)
         {
             _cache = new CachingService(new MemoryCacheProvider(cache));
             _parameterDictionary = new Dictionary<string, dynamic>();
+            _webRequest = webRequest;
         }
 
         public ClientService()

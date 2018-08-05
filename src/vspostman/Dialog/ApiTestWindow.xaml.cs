@@ -36,6 +36,7 @@ namespace VsPostman.Dialog
                     var client = new ClientService
                     {
                         Url = requestedUrl.Text
+                        
                     };
                     var output = await client.Get();
                     break;

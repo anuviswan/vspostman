@@ -63,6 +63,8 @@
     <Compile Include="Dialog\BaseDialogWindow.cs" />
     <Compile Include="HttpRequest\ClientService.cs" />
     <Compile Include="HttpRequest\eRequestType.cs" />
+    <Compile Include="HttpRequest\HttpWebRequestHandler.cs" />
+    <Compile Include="HttpRequest\IHttpWebRequest.cs" />
     <Compile Include="HttpRequest\IRequest.cs" />
     <Compile Include="PostmanCommand.cs" />
     <Compile Include="PostmanCommandPackage.cs" />
