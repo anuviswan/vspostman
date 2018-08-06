@@ -68,6 +68,11 @@
     <Compile Include="HttpRequest\IRequest.cs" />
     <Compile Include="PostmanCommand.cs" />
     <Compile Include="PostmanCommandPackage.cs" />
+    <Compile Include="PostmanToolWindow.cs" />
+    <Compile Include="PostmanToolWindowCommand.cs" />
+    <Compile Include="PostmanToolWindowControl.xaml.cs">
+      <DependentUpon>PostmanToolWindowControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -85,6 +90,7 @@
     </VSCTCompile>
     <Content Include="Resources\PostmanCommand.png" />
     <Content Include="Resources\PostmanCommandPackage.ico" />
+    <Content Include="Resources\PostmanToolWindowCommand.png" />
     <Content Include="stylesheet.css" />
   </ItemGroup>
   <ItemGroup>
@@ -218,6 +224,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Dialog\ApiTestWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PostmanToolWindowControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

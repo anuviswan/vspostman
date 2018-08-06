@@ -37,6 +37,7 @@ namespace VsPostman
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [Guid(PostmanCommandPackage.PackageGuidString)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
+    [ProvideToolWindow(typeof(PostmanToolWindow))]
     public sealed class PostmanCommandPackage : AsyncPackage
     {
         /// <summary>
@@ -70,6 +71,7 @@ namespace VsPostman
             // Do any initialization that requires the UI thread after switching to the UI thread.
             await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
             await PostmanCommand.InitializeAsync(this);
+            await PostmanToolWindowCommand.InitializeAsync(this);
         }
 
         #endregion

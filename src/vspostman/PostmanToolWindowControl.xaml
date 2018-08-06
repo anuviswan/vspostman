@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="VsPostman.PostmanToolWindowControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vsshell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
+             Background="{DynamicResource {x:Static vsshell:VsBrushes.WindowKey}}"
+             Foreground="{DynamicResource {x:Static vsshell:VsBrushes.WindowTextKey}}"
+                         xmlns:System="clr-namespace:System;assembly=mscorlib"
+            xmlns:StyleAlias="clr-namespace:VsPostman.HttpRequest"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300" 
+             Name="VsPostmanWindow">
+    <UserControl.Resources>
+        <Style x:Key="MediumButton" TargetType="Button">
+            <Setter Property="Width" Value="100"/>
+        </Style>
+        <Style x:Key="ToggleButton" TargetType="ToggleButton">
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="Margin" Value="0,10,0,10"></Setter>
+        </Style>
+        <ObjectDataProvider x:Key="dataFromEnum" MethodName="GetValues"
+                            ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="StyleAlias:eRequestType"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Grid.Column="0" Grid.Row="0"  Content="VS Postman Lite" FontWeight="Bold"></Label>
+        <Grid Grid.Column="0" Grid.Row="1" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <ComboBox Grid.Column="0" ItemsSource="{Binding Source={StaticResource dataFromEnum}}" x:Name="httpType"></ComboBox>
+            <Label Grid.Column="1" Content="Url"></Label>
+            <TextBox Grid.Column="2" Text="Test Url" FontStyle="Italic" x:Name="requestedUrl"></TextBox>
+            <Button Grid.Column="3" Content="Send" Style="{StaticResource MediumButton}" Click="SendRequest"></Button>
+        </Grid>
+        <StackPanel Orientation="Horizontal" Grid.Column="0"  Grid.Row="2" HorizontalAlignment="Right" >
+            <ToggleButton Content="JSON" Style="{StaticResource ToggleButton}"></ToggleButton>
+            <ToggleButton Content="XAML" Style="{StaticResource ToggleButton}"></ToggleButton>
+        </StackPanel>
+        <TabControl Grid.Column="0" Grid.Row="3">
+            <TabItem Header="Authorization"></TabItem>
+            <TabItem Header="Headers"></TabItem>
+            <TabItem Header="Body"></TabItem>
+            <TabItem Header="Prerequest Scripts"></TabItem>
+        </TabControl>
+
+        <TabControl Grid.Column="0" Grid.Row="4">
+            <TabItem Header="Body"></TabItem>
+            <TabItem Header="Cookies"></TabItem>
+            <TabItem Header="Headers"></TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>
