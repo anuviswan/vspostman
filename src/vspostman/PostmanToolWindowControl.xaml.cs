@@ -1,8 +1,11 @@
 ﻿namespace VsPostman
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Controls;
+    using VsPostman.HttpRequest;
 
     /// <summary>
     /// Interaction logic for PostmanToolWindowControl.
@@ -24,11 +27,28 @@
         /// <param name="e">The event args.</param>
         [SuppressMessage("Microsoft.Globalization", "CA1300:SpecifyMessageBoxOptions", Justification = "Sample code")]
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "Default event handler naming pattern")]
-        private void SendRequest(object sender, RoutedEventArgs e)
+        private async void SendRequest(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(
-                string.Format(System.Globalization.CultureInfo.CurrentUICulture, "Invoked '{0}'", this.ToString()),
-                "PostmanToolWindow");
+            switch ((eRequestType)Enum.Parse(typeof(eRequestType), httpType.SelectedValue.ToString(), true))
+            {
+                case eRequestType.POST:
+                    break;
+                case eRequestType.GET:
+                    var client = new ClientService(new HttpWebRequestFactory())
+                    {
+                        Url = requestedUrl.Text
+
+                    };
+                    var output = await client.Get();
+                    break;
+                case eRequestType.PUT:
+                    break;
+                case eRequestType.DELETE:
+                    break;
+                default:
+                    break;
+            }
+
         }
     }
 }
