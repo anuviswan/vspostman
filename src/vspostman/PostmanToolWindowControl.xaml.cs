@@ -29,6 +29,8 @@
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "Default event handler naming pattern")]
         private async void SendRequest(object sender, RoutedEventArgs e)
         {
+            var url = requestedUrl.Text;
+
             switch ((eRequestType)Enum.Parse(typeof(eRequestType), httpType.SelectedValue.ToString(), true))
             {
                 case eRequestType.POST:
@@ -36,7 +38,7 @@
                 case eRequestType.GET:
                     var client = new ClientService(new HttpWebRequestFactory())
                     {
-                        Url = requestedUrl.Text
+                        Url = url
 
                     };
                     var output = await client.Get();

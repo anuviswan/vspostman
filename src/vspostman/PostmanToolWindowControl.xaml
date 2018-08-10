@@ -58,6 +58,11 @@
             <TabItem Header="Headers"></TabItem>
             <TabItem Header="Body"></TabItem>
             <TabItem Header="Prerequest Scripts"></TabItem>
+            <TabItem Header="Url Params">
+                <Grid>
+                    
+                </Grid>
+            </TabItem>
         </TabControl>
 
         <TabControl Grid.Column="0" Grid.Row="4">

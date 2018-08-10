@@ -35,15 +35,7 @@
          other menus or buttons (commands); from a visual point of view you can see the
          group as the part of a menu contained between two lines. The parent of a group
          must be a menu. -->
-    <Menus>
-      <Menu guid="guidPostmanCommandPackageCmdSet" id="TopLevelMenu" priority="0x700" type="Menu">
-        <Parent guid="guidSHLMainMenu" id="IDG_VS_MM_TOOLSADDINS" />
-        <Strings>
-          <ButtonText>VS Postman</ButtonText>
-          <CommandName>VS Postman</CommandName>
-        </Strings>
-      </Menu>
-    </Menus>
+    
     
     <Groups>
       <Group guid="guidPostmanCommandPackageCmdSet" id="MyMenuGroup" priority="0x0600">
