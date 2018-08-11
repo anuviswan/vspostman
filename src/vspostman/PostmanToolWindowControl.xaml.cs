@@ -1,6 +1,7 @@
 ﻿namespace VsPostman
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
     using System.Windows;
@@ -30,18 +31,13 @@
         private async void SendRequest(object sender, RoutedEventArgs e)
         {
             var url = requestedUrl.Text;
-
+            var worker = new Worker();
             switch ((eRequestType)Enum.Parse(typeof(eRequestType), httpType.SelectedValue.ToString(), true))
             {
                 case eRequestType.POST:
                     break;
                 case eRequestType.GET:
-                    var client = new ClientService(new HttpWebRequestFactory())
-                    {
-                        Url = url
-
-                    };
-                    var output = await client.Get();
+                    await worker.SendGetRequest(url, new Dictionary<string, string>());
                     break;
                 case eRequestType.PUT:
                     break;
