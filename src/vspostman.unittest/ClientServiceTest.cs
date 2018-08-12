@@ -1,16 +1,14 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using vspostman;
 using VsPostman.HttpRequest;
 
 namespace vspostman.unittest
 {
-    
+
 
     [TestClass]
     public class ClientServiceTest
@@ -60,7 +58,7 @@ namespace vspostman.unittest
         }
 
         [TestMethod]
-        public async Task SimpleGetRequest()
+        public async Task SimpleGetRequest_ReturnWithSpecifiedText()
         {
             // arrange
             var expected = "response content";
@@ -80,16 +78,13 @@ namespace vspostman.unittest
                 .Returns(request.Object);
 
             // act
-            var clientService = new ClientService(factory.Object)
-            {
-                Url = "http://www.google.com"
-            };
-            var actualRequest = await clientService.Get();
+            var clientService = new ClientService(factory.Object);
+            var actualRequest = await clientService.Get($"http://www.google.com");
             Assert.AreEqual(expected, actualRequest);
         }
 
         [TestMethod]
-        public async Task GetRequestWithParameters()
+        public async Task GetRequestWithParameters_ReturnUrlAndParamString()
         {
 
             // arrange
@@ -113,12 +108,9 @@ namespace vspostman.unittest
                 .Returns(request.Object);
 
             // act
-            var clientService = new ClientService(factory.Object)
-            {
-                Url = url
-            };
+            var clientService = new ClientService(factory.Object);
             clientService.AddParameter(paramKey, paramValue);
-            var actualRequest = await clientService.Get();
+            var actualRequest = await clientService.Get(url);
             Assert.IsTrue(actualRequest.Contains(url));
             Assert.AreEqual($"{url}?{paramKey}={paramValue}",actualRequest);
         }

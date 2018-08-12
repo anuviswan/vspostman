@@ -1,11 +1,8 @@
 ﻿using LazyCache;
-using LazyCache.Providers;
-using Microsoft.Extensions.Caching.Memory;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace VsPostman.HttpRequest
@@ -15,7 +12,6 @@ namespace VsPostman.HttpRequest
         private IAppCache _cache;
         private IDictionary<string, dynamic> _parameterDictionary;
         private IHttpWebRequestFactory _webRequest;
-        public string Url { get; set; }
 
         public string ParameterString => string.Join("&", _parameterDictionary.Select(pair => $"{pair.Key}={pair.Value}"));
 
@@ -25,24 +21,13 @@ namespace VsPostman.HttpRequest
             _webRequest = webRequest;
         }
 
-        public ClientService()
+        public ClientService() => _parameterDictionary = new Dictionary<string, dynamic>();
+
+        public async Task<string> Get(string url)
         {
-            _parameterDictionary = new Dictionary<string, dynamic>();
-        }
-
-
-        public async Task<string> Get()
-        {
-
             HttpWebRequest request;
-            if (_parameterDictionary.Count > 0)
-            {
-                request = _webRequest.Create($"{Url}?{ParameterString}");
-            }
-            else
-            {
-                request = _webRequest.Create(Url);
-            }
+
+            request = _parameterDictionary.Count > 0 ? _webRequest.Create($"{url}?{ParameterString}") : _webRequest.Create(url);
 
             using (HttpWebResponse response = (HttpWebResponse)await request.GetResponseAsync())
             using (Stream stream = response.GetResponseStream())
@@ -57,9 +42,6 @@ namespace VsPostman.HttpRequest
             if (!_parameterDictionary.ContainsKey(parameterName))
                 _parameterDictionary.Add(parameterName, value);
         }
-
-         
-
         public void ClearParameters() => _parameterDictionary.Clear();
     }
 }

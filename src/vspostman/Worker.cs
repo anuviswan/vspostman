@@ -11,17 +11,15 @@ namespace VsPostman
     {
         public async Task<string> SendGetRequest(string url,IDictionary<string,string> parameters)
         {
-            var client = new ClientService(new HttpWebRequestFactory())
-            {
-                Url = url
-            };
+            var client = new ClientService(new HttpWebRequestFactory());
+            
 
             foreach (var item in parameters.Keys)
             {
                 client.AddParameter(item, parameters[item]);
             }
             
-            return await client.Get();
+            return await client.Get(url);
         }
     }
 }

@@ -9,10 +9,9 @@ namespace VsPostman.HttpRequest
 {
     public interface IRequest
     {
-        string Url { get; set; }
         void AddParameter(string parameterName, dynamic value);
         void ClearParameters();
-        Task<string> Get();
+        Task<string> Get(string url);
         string ParameterString { get; }
     }
 }
