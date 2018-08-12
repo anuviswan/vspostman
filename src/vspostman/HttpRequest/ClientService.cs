@@ -33,7 +33,16 @@ namespace VsPostman.HttpRequest
 
         public async Task<string> Get()
         {
-            HttpWebRequest request = _webRequest.Create(Url);
+
+            HttpWebRequest request;
+            if (_parameterDictionary.Count > 0)
+            {
+                request = _webRequest.Create($"{Url}?{ParameterString}");
+            }
+            else
+            {
+                request = _webRequest.Create(Url);
+            }
 
             using (HttpWebResponse response = (HttpWebResponse)await request.GetResponseAsync())
             using (Stream stream = response.GetResponseStream())

@@ -81,9 +81,9 @@ namespace vspostman.unittest
 
             // act
             var clientService = new ClientService(factory.Object)
-                    {
-                        Url = "http://www.google.com"
-                    };
+            {
+                Url = "http://www.google.com"
+            };
             var actualRequest = await clientService.Get();
             Assert.AreEqual(expected, actualRequest);
         }
@@ -95,9 +95,9 @@ namespace vspostman.unittest
             // arrange
             var paramKey = "Key";
             var paramValue = "Value";
-            var expected = "response content";
+            var url = "http://www.google.com";
             
-            var expectedBytes = Encoding.UTF8.GetBytes(expected);
+            var expectedBytes = Encoding.UTF8.GetBytes($"{url}?{paramKey}={paramValue}");
             var responseStream = new MemoryStream();
             responseStream.Write(expectedBytes, 0, expectedBytes.Length);
             responseStream.Seek(0, SeekOrigin.Begin);
@@ -115,12 +115,12 @@ namespace vspostman.unittest
             // act
             var clientService = new ClientService(factory.Object)
             {
-                Url = "http://www.google.com"
+                Url = url
             };
             clientService.AddParameter(paramKey, paramValue);
             var actualRequest = await clientService.Get();
-            Assert.IsTrue(actualRequest.Contains(expected));
-            Assert.AreEqual($"{expected}:{paramKey}={paramValue}",expected);
+            Assert.IsTrue(actualRequest.Contains(url));
+            Assert.AreEqual($"{url}?{paramKey}={paramValue}",actualRequest);
         }
 
     }
