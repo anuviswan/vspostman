@@ -88,5 +88,40 @@ namespace vspostman.unittest
             Assert.AreEqual(expected, actualRequest);
         }
 
+        [TestMethod]
+        public async Task GetRequestWithParameters()
+        {
+
+            // arrange
+            var paramKey = "Key";
+            var paramValue = "Value";
+            var expected = "response content";
+            
+            var expectedBytes = Encoding.UTF8.GetBytes(expected);
+            var responseStream = new MemoryStream();
+            responseStream.Write(expectedBytes, 0, expectedBytes.Length);
+            responseStream.Seek(0, SeekOrigin.Begin);
+
+            var response = new Mock<HttpWebResponse>();
+            response.Setup(c => c.GetResponseStream()).Returns(responseStream);
+
+            var request = new Mock<HttpWebRequest>();
+            request.Setup(c => c.GetResponseAsync()).Returns(Task.FromResult<WebResponse>(response.Object));
+
+            var factory = new Mock<IHttpWebRequestFactory>();
+            factory.Setup(c => c.Create(It.IsAny<string>()))
+                .Returns(request.Object);
+
+            // act
+            var clientService = new ClientService(factory.Object)
+            {
+                Url = "http://www.google.com"
+            };
+            clientService.AddParameter(paramKey, paramValue);
+            var actualRequest = await clientService.Get();
+            Assert.IsTrue(actualRequest.Contains(expected));
+            Assert.AreEqual($"{expected}:{paramKey}={paramValue}",expected);
+        }
+
     }
 }
