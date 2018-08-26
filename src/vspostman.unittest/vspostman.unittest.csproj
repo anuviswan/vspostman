@@ -61,7 +61,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientServiceTest.cs" />
+    <Compile Include="ClientServiceTests\AddParametersTest.cs" />
+    <Compile Include="ClientServiceTests\GetRequestTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
