@@ -1,4 +1,5 @@
 ﻿using LazyCache;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,9 +26,9 @@ namespace VsPostman.HttpRequest
 
         public async Task<string> Get(string url)
         {
-            HttpWebRequest request;
+            if (string.IsNullOrWhiteSpace(url) || _parameterDictionary.Values.Contains(null)) throw new ArgumentNullException();
 
-            request = _parameterDictionary.Count > 0 ? _webRequest.Create($"{url}?{ParameterString}") : _webRequest.Create(url);
+            var request =_parameterDictionary.Count > 0 ? _webRequest.Create($"{url}?{ParameterString}") : _webRequest.Create(url);
 
             using (HttpWebResponse response = (HttpWebResponse)await request.GetResponseAsync())
             using (Stream stream = response.GetResponseStream())
