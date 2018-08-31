@@ -66,6 +66,7 @@
     <Compile Include="HttpRequest\HttpWebRequestFactory.cs" />
     <Compile Include="HttpRequest\IHttpWebRequestFactory.cs" />
     <Compile Include="HttpRequest\IRequest.cs" />
+    <Compile Include="HttpRequest\ResponseObject.cs" />
     <Compile Include="PostmanCommand.cs" />
     <Compile Include="PostmanCommandPackage.cs" />
     <Compile Include="PostmanToolWindow.cs" />

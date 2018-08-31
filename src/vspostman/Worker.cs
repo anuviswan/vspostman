@@ -9,7 +9,7 @@ namespace VsPostman
 {
     public class Worker
     {
-        public async Task<string> SendGetRequest(string url,IDictionary<string,string> parameters)
+        public async Task<ResponseObject> SendGetRequest(string url,IDictionary<string,string> parameters)
         {
             var client = new ClientService(new HttpWebRequestFactory());
             

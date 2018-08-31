@@ -24,7 +24,7 @@ namespace VsPostman.HttpRequest
 
         public ClientService() => _parameterDictionary = new Dictionary<string, dynamic>();
 
-        public async Task<string> Get(string url)
+        public async Task<ResponseObject> Get(string url)
         {
             if (string.IsNullOrWhiteSpace(url) || _parameterDictionary.Values.Contains(null)) throw new ArgumentNullException();
 
@@ -34,7 +34,16 @@ namespace VsPostman.HttpRequest
             using (Stream stream = response.GetResponseStream())
             using (StreamReader reader = new StreamReader(stream))
             {
-                return await reader.ReadToEndAsync();
+                var returnValue = await reader.ReadToEndAsync();
+                return new ResponseObject
+                {
+                    ContendType = response.ContentType,
+                    Length = response.ContentLength,
+                    ResponseString = returnValue,
+                    ResponseTime = new TimeSpan(0, 1, 0),
+                    StatusCode = response.StatusCode,
+
+                };
             }
         }
 
