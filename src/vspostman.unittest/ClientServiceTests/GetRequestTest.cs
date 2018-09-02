@@ -33,8 +33,8 @@ namespace vspostman.unittest.ClientServiceTests
 
             // act
             var clientService = new ClientService(factory.Object);
-            var actualRequest = await clientService.Get($"http://www.google.com");
-            Assert.AreEqual(expected, actualRequest.ResponseString);
+            var actualResponse = await clientService.Get($"http://www.google.com");
+            Assert.AreEqual(expected, actualResponse.ResponseString);
         }
 
 
@@ -146,11 +146,11 @@ namespace vspostman.unittest.ClientServiceTests
             // act
             var clientService = new ClientService(factory.Object);
             clientService.AddParameter(paramKey, paramValue);
-            var actualRequest = await clientService.Get(url);
+            var actualResponse = await clientService.Get(url);
 
             // assert
-            Assert.IsTrue(actualRequest.ResponseString.Contains(url));
-            Assert.AreEqual($"{url}?{paramKey}={paramValue}", actualRequest.ResponseString);
+            Assert.IsTrue(actualResponse.ResponseString.Contains(url));
+            Assert.AreEqual($"{url}?{paramKey}={paramValue}", actualResponse.ResponseString);
         }
 
     }

@@ -1,6 +1,7 @@
 ﻿using LazyCache;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -34,13 +35,14 @@ namespace VsPostman.HttpRequest
             using (Stream stream = response.GetResponseStream())
             using (StreamReader reader = new StreamReader(stream))
             {
+                var watch = Stopwatch.StartNew();
                 var returnValue = await reader.ReadToEndAsync();
                 return new ResponseObject
                 {
                     ContendType = response.ContentType,
                     Length = response.ContentLength,
                     ResponseString = returnValue,
-                    ResponseTime = new TimeSpan(0, 1, 0),
+                    ResponseTime = watch.Elapsed,
                     StatusCode = response.StatusCode,
 
                 };

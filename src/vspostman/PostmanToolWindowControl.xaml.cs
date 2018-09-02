@@ -37,7 +37,8 @@
                 case eRequestType.POST:
                     break;
                 case eRequestType.GET:
-                    await worker.SendGetRequest(url, new Dictionary<string, string>());
+                    var result = await worker.SendGetRequest(url, new Dictionary<string, string>());
+                    UpdateUIWithResult(result);
                     break;
                 case eRequestType.PUT:
                     break;
@@ -47,6 +48,11 @@
                     break;
             }
 
+        }
+
+        public void UpdateUIWithResult(ResponseObject response)
+        {
+            statusText.Content = $"Status :{response.StatusCode.ToString()},Time:{response.ResponseTime.TotalMilliseconds}";
         }
     }
 }
