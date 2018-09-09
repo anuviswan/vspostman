@@ -17,18 +17,24 @@ using VsPostman.HttpRequest;
 namespace VsPostman.Controls
 {
     /// <summary>
-    /// Interaction logic for ResponseBody.xaml
+    /// Interaction logic for ResponseHeaders.xaml
     /// </summary>
-    public partial class ResponseBody : UserControl, IResponse
+    public partial class ResponseHeader : UserControl, IResponse
     {
-        public ResponseBody()
+        public ResponseHeader()
         {
             InitializeComponent();
         }
 
         public void Update(ResponseObject response)
         {
-            responsePretty.Text = response.ResponseString;
+            var headerString = new StringBuilder();
+            foreach (string key in response.Headers.Keys)
+            {
+                headerString.AppendLine($"{key}-> {response.Headers.Get(key)}");
+            }
+
+            responseHeaders.Text = headerString.ToString();
         }
     }
 }

@@ -90,7 +90,9 @@
                 <controls:ResponseBody x:Name="responseBody"></controls:ResponseBody>
             </TabItem>
             <TabItem Header="Cookies"></TabItem>
-            <TabItem Header="Headers"></TabItem>
+            <TabItem Header="Headers">
+                <controls:ResponseHeader x:Name="responseHeaders"></controls:ResponseHeader>
+            </TabItem>
         </TabControl>
     </Grid>
 </UserControl>

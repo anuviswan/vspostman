@@ -39,12 +39,12 @@ namespace VsPostman.HttpRequest
                 var returnValue = await reader.ReadToEndAsync();
                 return new ResponseObject
                 {
+                    Headers = response.Headers,
                     ContendType = response.ContentType,
                     Length = response.ContentLength,
                     ResponseString = returnValue,
                     ResponseTime = watch.Elapsed,
-                    StatusCode = response.StatusCode,
-
+                    StatusCode = response.StatusCode
                 };
             }
         }

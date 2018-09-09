@@ -54,6 +54,7 @@
         {
             UpdateStatus(response);
             UpdateResponseBody(response);
+            responseHeaders.Update(response);
         }
 
         private void UpdateResponseBody(ResponseObject response) => responseBody.Update(response);

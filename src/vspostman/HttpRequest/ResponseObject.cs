@@ -9,6 +9,7 @@ namespace VsPostman.HttpRequest
 {
     public class ResponseObject
     {
+        public WebHeaderCollection Headers { get; set; }
         public HttpStatusCode StatusCode { get; set; }
         public string StatusDescription { get; set; }
         public TimeSpan ResponseTime { get; set; }
