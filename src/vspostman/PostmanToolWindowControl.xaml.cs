@@ -54,5 +54,13 @@
         {
             statusText.Content = $@"Status: {(int)response.StatusCode} {response.StatusCode.ToString()}, Time: {response.ResponseTime.TotalMilliseconds:0.##} ms Size: {response.Length} B";
         }
+
+        private void requestedUrl_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if(Equals(requestedUrl.Text,"Test Url"))
+            {
+                requestedUrl.Text = string.Empty;
+            }
+        }
     }
 }

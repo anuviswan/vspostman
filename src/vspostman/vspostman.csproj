@@ -57,6 +57,9 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Controls\ResponseBody.xaml.cs">
+      <DependentUpon>ResponseBody.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialog\ApiTestWindow.xaml.cs">
       <DependentUpon>ApiTestWindow.xaml</DependentUpon>
     </Compile>
@@ -225,6 +228,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\ResponseBody.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dialog\ApiTestWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

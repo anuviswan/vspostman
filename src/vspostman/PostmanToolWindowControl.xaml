@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                          xmlns:System="clr-namespace:System;assembly=mscorlib"
             xmlns:StyleAlias="clr-namespace:VsPostman.HttpRequest"
+             xmlns:controls="clr-namespace:VsPostman.Controls"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300" 
              Name="VsPostmanWindow">
@@ -41,9 +42,9 @@
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
 
-            <ComboBox Grid.Column="0" ItemsSource="{Binding Source={StaticResource dataFromEnum}}" x:Name="httpType"/>
-            <Label Grid.Column="1" Content="Url"/>
-            <TextBox Grid.Column="2" Text="Test Url" FontStyle="Italic" x:Name="requestedUrl"/>
+            <ComboBox Grid.Column="0" ItemsSource="{Binding Source={StaticResource dataFromEnum}}" SelectedIndex="1" x:Name="httpType"/>
+            <Label Grid.Column="1" Content="Url" HorizontalAlignment="Right"/>
+            <TextBox Grid.Column="2" Text="Test Url" FontStyle="Italic" x:Name="requestedUrl" GotFocus="requestedUrl_GotFocus" />
             <Button Grid.Column="3" Content="Send" Style="{StaticResource MediumButton}" Click="SendRequest"/>
         </Grid>
         <StackPanel Orientation="Horizontal" Grid.Column="0"  Grid.Row="2" HorizontalAlignment="Right" >
@@ -85,7 +86,9 @@
         </TabControl>
         <Label Grid.Row="4" x:Name="statusText" HorizontalAlignment="Right"  Content="Pending"></Label>
         <TabControl Grid.Column="0" Grid.Row="5">
-            <TabItem Header="Body"></TabItem>
+            <TabItem Header="Body">
+                <controls:ResponseBody></controls:ResponseBody>
+            </TabItem>
             <TabItem Header="Cookies"></TabItem>
             <TabItem Header="Headers"></TabItem>
         </TabControl>
