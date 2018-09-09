@@ -52,6 +52,14 @@
 
         public void UpdateUIWithResult(ResponseObject response)
         {
+            UpdateStatus(response);
+            UpdateResponseBody(response);
+        }
+
+        private void UpdateResponseBody(ResponseObject response) => responseBody.Update(response);
+
+        private void UpdateStatus(ResponseObject response)
+        {
             statusText.Content = $@"Status: {(int)response.StatusCode} {response.StatusCode.ToString()}, Time: {response.ResponseTime.TotalMilliseconds:0.##} ms Size: {response.Length} B";
         }
 

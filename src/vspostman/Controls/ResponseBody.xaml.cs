@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VsPostman.HttpRequest;
 
 namespace VsPostman.Controls
 {
@@ -23,6 +24,11 @@ namespace VsPostman.Controls
         public ResponseBody()
         {
             InitializeComponent();
+        }
+
+        public void Update(ResponseObject response)
+        {
+            responsePretty.Text = response.ResponseString;
         }
     }
 }

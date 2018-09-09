@@ -87,7 +87,7 @@
         <Label Grid.Row="4" x:Name="statusText" HorizontalAlignment="Right"  Content="Pending"></Label>
         <TabControl Grid.Column="0" Grid.Row="5">
             <TabItem Header="Body">
-                <controls:ResponseBody></controls:ResponseBody>
+                <controls:ResponseBody x:Name="responseBody"></controls:ResponseBody>
             </TabItem>
             <TabItem Header="Cookies"></TabItem>
             <TabItem Header="Headers"></TabItem>
