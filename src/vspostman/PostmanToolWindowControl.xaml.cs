@@ -52,7 +52,7 @@
 
         public void UpdateUIWithResult(ResponseObject response)
         {
-            statusText.Content = $"Status :{response.StatusCode.ToString()},Time:{response.ResponseTime.TotalMilliseconds}";
+            statusText.Content = $@"Status: {(int)response.StatusCode} {response.StatusCode.ToString()}, Time: {response.ResponseTime.TotalMilliseconds:0.##} ms Size: {response.Length} B";
         }
     }
 }
