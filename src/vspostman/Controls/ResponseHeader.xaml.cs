@@ -13,6 +13,8 @@ namespace VsPostman.Controls
 
         public void Update(ResponseObject response)
         {
+            HeaderList.Clear();
+
             foreach (string key in response.Headers.Keys)
             {
                 HeaderList.Add(key, response.Headers.Get(key));

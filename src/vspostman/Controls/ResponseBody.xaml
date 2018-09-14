@@ -9,6 +9,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -18,8 +19,8 @@
             <RadioButton Style="{StaticResource {x:Type ToggleButton}}" Content="Review" Width="80"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="1">
-            <TextBlock TextWrapping="Wrap" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" x:Name="responsePretty"/>
+        <StackPanel Grid.Row="2">
+            <TextBox VerticalScrollBarVisibility="Auto"  TextWrapping="Wrap" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" AcceptsReturn="True" x:Name="responsePretty"/>
         </StackPanel>
     </Grid>
 </UserControl>
