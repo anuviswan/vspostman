@@ -57,6 +57,7 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ControlBase.cs" />
     <Compile Include="Controls\IResponse.cs" />
     <Compile Include="Controls\ResponseBody.xaml.cs">
       <DependentUpon>ResponseBody.xaml</DependentUpon>
@@ -81,6 +82,7 @@
     <Compile Include="PostmanToolWindowControl.xaml.cs">
       <DependentUpon>PostmanToolWindowControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PostmanToolWindowControlViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Worker.cs" />
   </ItemGroup>

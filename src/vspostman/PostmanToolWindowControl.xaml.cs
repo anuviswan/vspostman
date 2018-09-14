@@ -19,6 +19,7 @@
         public PostmanToolWindowControl()
         {
             this.InitializeComponent();
+            this.DataContext = new PostmanToolWindowControlViewModel();
         }
 
         /// <summary>
