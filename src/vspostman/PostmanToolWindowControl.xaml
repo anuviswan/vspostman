@@ -44,7 +44,7 @@
 
             <ComboBox Grid.Column="0" ItemsSource="{Binding Source={StaticResource dataFromEnum}}" SelectedIndex="1" x:Name="httpType"/>
             <Label Grid.Column="1" Content="Url" HorizontalAlignment="Right"/>
-            <TextBox Grid.Column="2" Text="{Binding Url}" FontStyle="Italic" x:Name="requestedUrl" GotFocus="requestedUrl_GotFocus"  />
+            <TextBox Grid.Column="2" Text="{Binding Url,UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" x:Name="requestedUrl" GotFocus="requestedUrl_GotFocus"  />
             <Button Grid.Column="3" Content="Send" Style="{StaticResource MediumButton}" Click="SendRequest"/>
         </Grid>
         <StackPanel Orientation="Horizontal" Grid.Column="0"  Grid.Row="2" HorizontalAlignment="Right" >
