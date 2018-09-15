@@ -84,6 +84,7 @@
     </Compile>
     <Compile Include="PostmanToolWindowControlViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleCommand.cs" />
     <Compile Include="Worker.cs" />
   </ItemGroup>
   <ItemGroup>
