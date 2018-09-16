@@ -42,9 +42,9 @@
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
 
-            <ComboBox Grid.Column="0" ItemsSource="{Binding Source={StaticResource dataFromEnum}}" SelectedIndex="1" x:Name="httpType"/>
+            <ComboBox Grid.Column="0" ItemsSource="{Binding Source={StaticResource dataFromEnum}}" IsSynchronizedWithCurrentItem="True" SelectedItem="{Binding RequestType,UpdateSourceTrigger=PropertyChanged}" x:Name="httpType"/>
             <Label Grid.Column="1" Content="Url" HorizontalAlignment="Right"/>
-            <TextBox Grid.Column="2" Text="{Binding Url,UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" x:Name="requestedUrl" GotFocus="requestedUrl_GotFocus"  />
+            <TextBox Grid.Column="2" Text="{Binding Url,UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic" x:Name="requestedUrl"   />
             <Button Grid.Column="3" Content="Send" Style="{StaticResource MediumButton}" Command="{Binding SendRequestCommand}" />
         </Grid>
         <StackPanel Orientation="Horizontal" Grid.Column="0"  Grid.Row="2" HorizontalAlignment="Right" >
@@ -84,7 +84,7 @@
             </TabItem>
 
         </TabControl>
-        <Label Grid.Row="4" x:Name="statusText" HorizontalAlignment="Right"  Content="Pending"></Label>
+        <Label Grid.Row="4" x:Name="statusText" HorizontalAlignment="Right"  Content="{Binding Status}"></Label>
         <TabControl Grid.Column="0" Grid.Row="5">
             <TabItem Header="Body">
                 <controls:ResponseBody x:Name="responseBody"></controls:ResponseBody>

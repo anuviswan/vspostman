@@ -22,55 +22,16 @@
             this.DataContext = new PostmanToolWindowControlViewModel();
         }
 
-        /// <summary>
-        /// Handles click on the button by displaying a message box.
-        /// </summary>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event args.</param>
-        [SuppressMessage("Microsoft.Globalization", "CA1300:SpecifyMessageBoxOptions", Justification = "Sample code")]
-        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "Default event handler naming pattern")]
-        private async void SendRequest(object sender, RoutedEventArgs e)
-        {
-            var url = requestedUrl.Text;
-            var worker = new Worker();
-            switch ((eRequestType)Enum.Parse(typeof(eRequestType), httpType.SelectedValue.ToString(), true))
-            {
-                case eRequestType.POST:
-                    break;
-                case eRequestType.GET:
-                    var result = await worker.SendGetRequest(url, new Dictionary<string, string>());
-                    UpdateUIWithResult(result);
-                    break;
-                case eRequestType.PUT:
-                    break;
-                case eRequestType.DELETE:
-                    break;
-                default:
-                    break;
-            }
-
-        }
-
         public void UpdateUIWithResult(ResponseObject response)
         {
-            UpdateStatus(response);
             UpdateResponseBody(response);
             responseHeaders.Update(response);
         }
 
         private void UpdateResponseBody(ResponseObject response) => responseBody.Update(response);
 
-        private void UpdateStatus(ResponseObject response)
-        {
-            statusText.Content = $@"Status: {(int)response.StatusCode} {response.StatusCode.ToString()}, Time: {response.ResponseTime.TotalMilliseconds:0.##} ms Size: {response.Length} B";
-        }
 
-        private void requestedUrl_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if(Equals(requestedUrl.Text,"Test Url"))
-            {
-                requestedUrl.Text = string.Empty;
-            }
-        }
+
+    
     }
 }

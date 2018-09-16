@@ -9,7 +9,7 @@ namespace VsPostman
 {
     public class SimpleCommand : ICommand
     {
-        private Action _actionToExecute;
+        private Action _execute;
         private Func<bool> _canExecute;
         public event EventHandler CanExecuteChanged;
 
@@ -18,10 +18,10 @@ namespace VsPostman
         public SimpleCommand(Action execute,Func<bool> canExecute)
         {
             _canExecute = canExecute;
-            _actionToExecute = execute;
+            _execute = execute;
         }
         public bool CanExecute(object parameter)=> _canExecute == null || _canExecute();
-        public void Execute(object parameter) => _actionToExecute.Invoke();
+        public void Execute(object parameter) => _execute();
         
     }
 }

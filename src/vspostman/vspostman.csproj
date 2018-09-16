@@ -57,6 +57,8 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Commands\ICommandAsync.cs" />
+    <Compile Include="Commands\SimpleCommandAsync.cs" />
     <Compile Include="ControlBase.cs" />
     <Compile Include="Controls\IResponse.cs" />
     <Compile Include="Controls\ResponseBody.xaml.cs">
@@ -84,7 +86,7 @@
     </Compile>
     <Compile Include="PostmanToolWindowControlViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SimpleCommand.cs" />
+    <Compile Include="Commands\SimpleCommand.cs" />
     <Compile Include="Worker.cs" />
   </ItemGroup>
   <ItemGroup>
