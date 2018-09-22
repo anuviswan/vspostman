@@ -6,7 +6,6 @@
                          xmlns:System="clr-namespace:System;assembly=mscorlib"
             xmlns:StyleAlias="clr-namespace:VsPostman.HttpRequest"
              xmlns:vm="clr-namespace:VsPostman"
-             xmlns:Dp="clr-namespace:VsPostman.DependencyProperties"
              xmlns:ResponseControls="clr-namespace:VsPostman.Controls.Response"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance {x:Type vm:PostmanToolWindowControlViewModel},  IsDesignTimeCreatable=True}"

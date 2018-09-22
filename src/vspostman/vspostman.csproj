@@ -60,17 +60,11 @@
     <Compile Include="Commands\ICommandAsync.cs" />
     <Compile Include="Commands\SimpleCommandAsync.cs" />
     <Compile Include="ControlBase.cs" />
-    <Compile Include="Controls\IResponse.cs" />
-    <Compile Include="Controls\ResponseBody.xaml.cs">
-      <DependentUpon>ResponseBody.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\ResponseBodyViewModel.cs" />
     <Compile Include="Controls\Response\ResponseBase.cs" />
     <Compile Include="Controls\Response\ResponseHeader.xaml.cs">
       <DependentUpon>ResponseHeader.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Response\ResponseHeaderViewModel.cs" />
-    <Compile Include="DependencyProperties\BaseResponseProperties.cs" />
     <Compile Include="Dialog\ApiTestWindow.xaml.cs">
       <DependentUpon>ApiTestWindow.xaml</DependentUpon>
     </Compile>
@@ -245,10 +239,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Controls\ResponseBody.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\Response\ResponseHeader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
