@@ -64,9 +64,13 @@
     <Compile Include="Controls\ResponseBody.xaml.cs">
       <DependentUpon>ResponseBody.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\ResponseHeader.xaml.cs">
+    <Compile Include="Controls\ResponseBodyViewModel.cs" />
+    <Compile Include="Controls\Response\ResponseBase.cs" />
+    <Compile Include="Controls\Response\ResponseHeader.xaml.cs">
       <DependentUpon>ResponseHeader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Response\ResponseHeaderViewModel.cs" />
+    <Compile Include="DependencyProperties\BaseResponseProperties.cs" />
     <Compile Include="Dialog\ApiTestWindow.xaml.cs">
       <DependentUpon>ApiTestWindow.xaml</DependentUpon>
     </Compile>
@@ -245,7 +249,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\ResponseHeader.xaml">
+    <Page Include="Controls\Response\ResponseHeader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -258,6 +262,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="..\packages\Microsoft.VisualStudio.SDK.EmbedInteropTypes.15.0.10\build\Microsoft.VisualStudio.SDK.EmbedInteropTypes.targets" Condition="Exists('..\packages\Microsoft.VisualStudio.SDK.EmbedInteropTypes.15.0.10\build\Microsoft.VisualStudio.SDK.EmbedInteropTypes.targets')" />

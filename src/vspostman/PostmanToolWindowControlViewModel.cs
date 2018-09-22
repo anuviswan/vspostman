@@ -44,8 +44,14 @@ namespace VsPostman
 
         private void UpdateUIWithResult(ResponseObject result)
         {
+            Response = result;
             Status = $@"Status: {(int)result.StatusCode} {result.StatusCode.ToString()}, Time: {result.ResponseTime.TotalMilliseconds:0.##} ms Size: {result.Length} B";
             OnPropertyChanged(nameof(Status));
+        }
+
+        public ResponseObject Response
+        {
+            get;set;
         }
 
         public string Status { get; set; }

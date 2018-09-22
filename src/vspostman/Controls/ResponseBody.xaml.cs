@@ -6,10 +6,13 @@ namespace VsPostman.Controls
     /// <summary>
     /// Interaction logic for ResponseBody.xaml
     /// </summary>
-    public partial class ResponseBody : UserControl, IResponse
+    public partial class ResponseBody : UserControl
     {
-        public ResponseBody() => InitializeComponent();
-        public void Update(ResponseObject response) => responsePretty.Text = response.ResponseString;
+        public ResponseBody()
+        {
+            InitializeComponent();
+            DataContext = new ResponseBodyViewModel();
+        }
         
     }
 }

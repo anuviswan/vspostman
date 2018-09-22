@@ -25,10 +25,12 @@
         public void UpdateUIWithResult(ResponseObject response)
         {
             UpdateResponseBody(response);
-            responseHeaders.Update(response);
+            //responseHeaders.Update(response);
         }
 
-        private void UpdateResponseBody(ResponseObject response) => responseBody.Update(response);
+        private void UpdateResponseBody(ResponseObject response)
+        {
+        }
 
 
 

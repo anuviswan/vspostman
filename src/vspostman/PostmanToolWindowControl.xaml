@@ -5,8 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                          xmlns:System="clr-namespace:System;assembly=mscorlib"
             xmlns:StyleAlias="clr-namespace:VsPostman.HttpRequest"
-             xmlns:controls="clr-namespace:VsPostman.Controls"
+             xmlns:vm="clr-namespace:VsPostman"
+             xmlns:Dp="clr-namespace:VsPostman.DependencyProperties"
+             xmlns:ResponseControls="clr-namespace:VsPostman.Controls.Response"
              mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance {x:Type vm:PostmanToolWindowControlViewModel},  IsDesignTimeCreatable=True}"
              d:DesignHeight="300" d:DesignWidth="300" 
              Name="VsPostmanWindow">
     <UserControl.Resources>
@@ -87,11 +90,11 @@
         <Label Grid.Row="4" x:Name="statusText" HorizontalAlignment="Right"  Content="{Binding Status}"></Label>
         <TabControl Grid.Column="0" Grid.Row="5">
             <TabItem Header="Body">
-                <controls:ResponseBody x:Name="responseBody"></controls:ResponseBody>
+                <ResponseControls:ResponseHeader x:Name="responseBody" Response="{Binding Response}"/>
             </TabItem>
             <TabItem Header="Cookies"></TabItem>
             <TabItem Header="Headers">
-                <controls:ResponseHeader x:Name="responseHeaders"></controls:ResponseHeader>
+                <ResponseControls:ResponseHeader  x:Name="responseHeaders"></ResponseControls:ResponseHeader>
             </TabItem>
         </TabControl>
     </Grid>
