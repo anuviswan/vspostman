@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace VsPostman
 {
-    public class ControlBase : INotifyPropertyChanged
+    public class PropertyChangeBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

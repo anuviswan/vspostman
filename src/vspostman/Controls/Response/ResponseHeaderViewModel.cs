@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VsPostman.Controls.Response
 {
-    public class ResponseHeaderViewModel:ControlBase
+    public class ResponseHeaderViewModel: PropertyChangeBase
     {
 
     }

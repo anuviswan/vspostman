@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace VsPostman.HttpRequest
 {
-    public class ResponseObject
+    public class ResponseObject: PropertyChangeBase
     {
         public WebHeaderCollection Headers { get; set; }
         public HttpStatusCode StatusCode { get; set; }

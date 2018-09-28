@@ -57,9 +57,11 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Behaviors\ResponseProperties.cs" />
     <Compile Include="Commands\ICommandAsync.cs" />
     <Compile Include="Commands\SimpleCommandAsync.cs" />
-    <Compile Include="ControlBase.cs" />
+    <Compile Include="Controls\Response\IHasResponse.cs" />
+    <Compile Include="PropertyChangeBase.cs" />
     <Compile Include="Controls\Response\ResponseBase.cs" />
     <Compile Include="Controls\Response\ResponseHeader.xaml.cs">
       <DependentUpon>ResponseHeader.xaml</DependentUpon>

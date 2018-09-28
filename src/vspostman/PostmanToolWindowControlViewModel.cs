@@ -10,7 +10,7 @@ using VsPostman.HttpRequest;
 
 namespace VsPostman
 {
-    public class PostmanToolWindowControlViewModel : ControlBase
+    public class PostmanToolWindowControlViewModel : PropertyChangeBase
     {
         public PostmanToolWindowControlViewModel ()
 	    {
@@ -44,12 +44,13 @@ namespace VsPostman
 
         private void UpdateUIWithResult(ResponseObject result)
         {
-            Response = result;
+            Result = result;
+            OnPropertyChanged(nameof(Result));
             Status = $@"Status: {(int)result.StatusCode} {result.StatusCode.ToString()}, Time: {result.ResponseTime.TotalMilliseconds:0.##} ms Size: {result.Length} B";
             OnPropertyChanged(nameof(Status));
         }
 
-        public ResponseObject Response
+        public ResponseObject Result
         {
             get;set;
         }

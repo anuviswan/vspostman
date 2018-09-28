@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,18 +13,27 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VsPostman.HttpRequest;
 
 namespace VsPostman.Controls.Response
 {
     /// <summary>
     /// Interaction logic for ResponseHeader.xaml
     /// </summary>
-    public partial class ResponseHeader : ResponseBase
+    public partial class ResponseHeader : ResponseBase, IHasResponse
     {
         public ResponseHeader()
         {
             InitializeComponent();
-            DataContext = new ResponseHeaderViewModel();
         }
+
+        public void Update(ResponseObject responseObject)
+        {
+            var headerDictionary = responseObject.Headers.Cast<string>().ToDictionary(x=>x,v=>responseObject.Headers[v]);
+            
+            dgHeaders.ItemsSource = headerDictionary;
+        }
+
+        
     }
 }
