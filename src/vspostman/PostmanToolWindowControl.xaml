@@ -30,7 +30,7 @@
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="10"/>
             <RowDefinition Height="25"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
@@ -46,7 +46,7 @@
 
             <ComboBox Grid.Column="0" ItemsSource="{Binding Source={StaticResource dataFromEnum}}" IsSynchronizedWithCurrentItem="True" SelectedItem="{Binding RequestType,UpdateSourceTrigger=PropertyChanged}" x:Name="httpType"/>
             <Grid Grid.Column="1" VerticalAlignment="Center" >
-                <TextBox Grid.Column="2" Text="{Binding Url,UpdateSourceTrigger=PropertyChanged}" 
+                <TextBox  Text="{Binding Url,UpdateSourceTrigger=PropertyChanged}" 
                          VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="requestedUrl" Height="{Binding ElementName=httpType, Path=ActualHeight}"  />
                 <TextBlock IsHitTestVisible="False" Text="Enter Url Here" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
                     <TextBlock.Style>
@@ -79,21 +79,36 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <DataGrid Grid.Row="0" Name="dgUrlParams" AutoGenerateColumns="False">
+                    <DataGrid Grid.Row="0" Name="dgUrlParams" AutoGenerateColumns="False" ItemsSource="{Binding UrlParamCollection}">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Key" Binding="{Binding Name}" />
-                            <DataGridTemplateColumn Header="Value">
+                            <DataGridTemplateColumn Header="Key" MinWidth="100">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBox Text="test"/>
+                                        <TextBox Text="{Binding Key}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="Value" MinWidth="100">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox Text="{Binding Value}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="Description" MinWidth="200">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox Text="{Binding Description}"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
 
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                        <Button Grid.Row="1" Content="+" Width="30" Height="30" HorizontalAlignment="Left"></Button>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="1">
+                        <Button Grid.Row="1" Content="+" Width="30" Height="30" HorizontalAlignment="Left" Command="{Binding AddUrlParamCommand}"></Button>
                         <Button Grid.Row="1" Content="-" Width="30" Height="30" HorizontalAlignment="Left"></Button>
                     </StackPanel>
                 </Grid>

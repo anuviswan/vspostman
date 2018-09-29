@@ -54,18 +54,12 @@
               <CommandFlag>DefaultInvisible</CommandFlag>
               <CommandFlag>DynamicVisibility</CommandFlag>
           If you do not want an image next to your command, remove the Icon node /> -->
-      <Button guid="guidPostmanCommandPackageCmdSet" id="PostmanCommandId" priority="0x0100" type="Button">
-        <Parent guid="guidPostmanCommandPackageCmdSet" id="MyMenuGroup" />
-        <Icon guid="guidImages" id="bmpPic1" />
-        <Strings>
-          <ButtonText>VS Postman</ButtonText>
-        </Strings>
-      </Button>
+      
       <Button guid="guidPostmanCommandPackageCmdSet" id="cmdidPostmanToolWindowCommand" priority="0x0100" type="Button">
         <Parent guid="guidSHLMainMenu" id="IDG_VS_WNDO_OTRWNDWS1" />
         <Icon guid="guidImages1" id="bmpPic1" />
         <Strings>
-          <ButtonText>PostmanToolWindow</ButtonText>
+          <ButtonText>Web Api Testing Window</ButtonText>
         </Strings>
       </Button>
     </Buttons>

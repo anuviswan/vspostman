@@ -65,15 +65,12 @@
       <DependentUpon>ResponseBody.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Response\ResponseType.cs" />
+    <Compile Include="Dto\UrlParamDto.cs" />
     <Compile Include="PropertyChangeBase.cs" />
     <Compile Include="Controls\Response\ResponseBase.cs" />
     <Compile Include="Controls\Response\ResponseHeader.xaml.cs">
       <DependentUpon>ResponseHeader.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\ApiTestWindow.xaml.cs">
-      <DependentUpon>ApiTestWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Dialog\BaseDialogWindow.cs" />
     <Compile Include="HttpRequest\ClientService.cs" />
     <Compile Include="HttpRequest\eRequestType.cs" />
     <Compile Include="HttpRequest\HttpWebRequestFactory.cs" />
@@ -105,6 +102,7 @@
     <Content Include="index.html" />
     <VSCTCompile Include="PostmanCommandPackage.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
+      <SubType>Designer</SubType>
     </VSCTCompile>
     <Content Include="Resources\PostmanCommand.png" />
     <Content Include="Resources\PostmanCommandPackage.ico" />
@@ -249,10 +247,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Response\ResponseHeader.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Dialog\ApiTestWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

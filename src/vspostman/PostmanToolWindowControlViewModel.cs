@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using VsPostman.Commands;
+using VsPostman.Dto;
 using VsPostman.HttpRequest;
 
 namespace VsPostman
@@ -15,12 +17,19 @@ namespace VsPostman
         public PostmanToolWindowControlViewModel ()
 	    {
             SendRequestCommand = new SimpleCommandAsync(SendRequestAsync);
+            AddUrlParamCommand = new SimpleCommand(AddUrlParam);
 	    }
+
+        private void AddUrlParam()
+        {
+            UrlParamCollection.Add(new UrlParamDto { Key = string.Empty, Description = string.Empty, Value = string.Empty });
+        }
 
         public eRequestType RequestType { get; set; }
         
         public string Url { get; set; } 
         public ICommand SendRequestCommand{get;set;}
+        public ICommand AddUrlParamCommand { get; set; }
 
         public async Task SendRequestAsync()
         {
@@ -56,6 +65,9 @@ namespace VsPostman
         }
 
         public string Status { get; set; }
+
+        public ObservableCollection<UrlParamDto> UrlParamCollection { get; set; } = new ObservableCollection<UrlParamDto>();
+
 
     }
 }

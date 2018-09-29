@@ -5,7 +5,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
-using VsPostman.Dialog;
 using Task = System.Threading.Tasks.Task;
 
 namespace VsPostman
@@ -89,8 +88,7 @@ namespace VsPostman
         /// <param name="e">Event args.</param>
         private void Execute(object sender, EventArgs e)
         {
-            var apiTestWindow = new ApiTestWindow();
-            apiTestWindow.ShowModal();
+        
         }
     }
 }

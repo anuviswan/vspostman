@@ -22,18 +22,6 @@
             this.DataContext = new PostmanToolWindowControlViewModel();
         }
 
-        public void UpdateUIWithResult(ResponseObject response)
-        {
-            UpdateResponseBody(response);
-            //responseHeaders.Update(response);
-        }
-
-        private void UpdateResponseBody(ResponseObject response)
-        {
-        }
-
-
-
-    
+        
     }
 }
