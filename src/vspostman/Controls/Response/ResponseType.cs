@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace VsPostman.Controls.Response
 {
-    public class ResponseHeaderViewModel: PropertyChangeBase
+    public enum ResponseType
     {
-
+        Text,
+        JSON
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,16 +17,18 @@ using VsPostman.HttpRequest;
 namespace VsPostman.Controls.Response
 {
     /// <summary>
-    /// Interaction logic for ResponseHeader.xaml
+    /// Interaction logic for ResponseBody.xaml
     /// </summary>
-    public partial class ResponseHeader : ResponseBase, IHasResponse
+    public partial class ResponseBody : ResponseBase,IHasResponse
     {
-        public ResponseHeader() => InitializeComponent();
-
-        public void Update(ResponseObject responseObject) 
+        public ResponseBody()
         {
-            dgHeaders.ItemsSource = responseObject.Headers.Cast<string>().ToDictionary(x => x, v => responseObject.Headers[v]);
+            InitializeComponent();
         }
 
+        public void Update(ResponseObject responseObject)
+        {
+            txtResponseBody.Text = responseObject.ResponseString;
+        }
     }
 }
