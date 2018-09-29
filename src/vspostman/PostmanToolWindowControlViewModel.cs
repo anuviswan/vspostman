@@ -19,7 +19,7 @@ namespace VsPostman
 
         public eRequestType RequestType { get; set; }
         
-        public string Url { get; set; } = "Enter your Url here";
+        public string Url { get; set; } 
         public ICommand SendRequestCommand{get;set;}
 
         public async Task SendRequestAsync()
