@@ -8,7 +8,7 @@
              xmlns:vc="clr-namespace:VsPostman.Convertor"
              d:DesignHeight="450" d:DesignWidth="800">
     <local:ResponseBase.Resources>
-        <vc:IsStatusValidConvertor x:Key="StatusConvertor"></vc:IsStatusValidConvertor>
+        <!--<vc:IsStatusValidConvertor x:Key="StatusConvertor"></vc:IsStatusValidConvertor>-->
         <Style TargetType="TextBlock" x:Key="Normal">
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="Margin" Value="5,0,2,0"/>
@@ -16,10 +16,10 @@
 
         <Style TargetType="TextBlock" x:Key="OnValue">
             <Style.Triggers>
-                <DataTrigger Binding="{Binding ElementName=StatusResult, Path=Text, Converter={StaticResource StatusConvertor}}" Value="True">
+                <DataTrigger Binding="{Binding ElementName=StatusResult, Path=Text, Converter={vc:IsStatusValidConvertor}}" Value="True">
                     <Setter Property="Foreground" Value="Green" />
                 </DataTrigger>
-                <DataTrigger Binding="{Binding ElementName=StatusResult, Path=Text, Converter={StaticResource StatusConvertor}}" Value="False">
+                <DataTrigger Binding="{Binding ElementName=StatusResult, Path=Text, Converter={vc:IsStatusValidConvertor}}" Value="False">
                     <Setter Property="Foreground" Value="Red" />
                 </DataTrigger>
             </Style.Triggers>
