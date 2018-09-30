@@ -64,7 +64,11 @@
     <Compile Include="Controls\Response\ResponseBody.xaml.cs">
       <DependentUpon>ResponseBody.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Response\ResponseStatus.xaml.cs">
+      <DependentUpon>ResponseStatus.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Response\ResponseType.cs" />
+    <Compile Include="Convertor\IsStatusValidConvertor.cs" />
     <Compile Include="Dto\UrlParamDto.cs" />
     <Compile Include="PropertyChangeBase.cs" />
     <Compile Include="Controls\Response\ResponseBase.cs" />
@@ -247,6 +251,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Response\ResponseHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Response\ResponseStatus.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
