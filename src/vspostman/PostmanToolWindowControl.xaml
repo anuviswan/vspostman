@@ -79,7 +79,8 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <DataGrid Grid.Row="0" Name="dgUrlParams" AutoGenerateColumns="False" ItemsSource="{Binding UrlParamCollection}">
+                    <DataGrid Grid.Row="0" Name="dgUrlParams" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="True" 
+                              ItemsSource="{Binding UrlParamCollection,Mode=TwoWay}">
                         <DataGrid.Columns>
                             <DataGridTemplateColumn Header="Key" MinWidth="100">
                                 <DataGridTemplateColumn.CellTemplate>

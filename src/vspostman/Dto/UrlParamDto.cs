@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VsPostman.Dto
 {
-    public class UrlParamDto
+    public class UrlParamDto : PropertyChangeBase
     {
         public string Key { get; set; }
         public string Value { get; set; }
