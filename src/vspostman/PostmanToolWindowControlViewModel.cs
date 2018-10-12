@@ -39,7 +39,7 @@ namespace VsPostman
                 case eRequestType.POST:
                     break;
                 case eRequestType.GET:
-                    var result = await worker.SendGetRequest(Url, new Dictionary<string, string>());
+                    var result = await worker.SendGetRequest(Url, UrlParamCollection.ToDictionary(x => x.Key, y => y.Value));
                     UpdateUIWithResult(result);
                     break;
                 case eRequestType.PUT:
