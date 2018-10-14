@@ -79,13 +79,14 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <DataGrid Grid.Row="0" Name="dgUrlParams" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" 
-                              ItemsSource="{Binding UrlParamCollection,Mode=TwoWay}">
+                    <DataGrid Grid.Row="0" Name="dgUrlParams" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"
+                              CurrentCellChanged="dataGrid_CurrentCellChanged" CellEditEnding="dataGrid_CellEditEnding" IsSynchronizedWithCurrentItem="True"
+                              ItemsSource="{Binding UrlParamCollection,Mode=TwoWay,UpdateSourceTrigger=LostFocus}">
                         <DataGrid.Columns>
                             <DataGridTemplateColumn Header="Key" MinWidth="100">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBox Text="{Binding Key}"/>
+                                        <TextBox Text="{Binding Key,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -93,7 +94,7 @@
                             <DataGridTemplateColumn Header="Value" MinWidth="100">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBox Text="{Binding Value}"/>
+                                        <TextBox Text="{Binding Value,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -101,7 +102,7 @@
                             <DataGridTemplateColumn Header="Description" MinWidth="200">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBox Text="{Binding Description}"/>
+                                        <TextBox Text="{Binding Description,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>

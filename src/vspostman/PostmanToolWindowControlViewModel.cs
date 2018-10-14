@@ -66,7 +66,7 @@ namespace VsPostman
 
         public string Status { get; set; }
 
-        public ObservableCollection<UrlParamDto> UrlParamCollection { get; set; } = new ObservableCollection<UrlParamDto>(new[] { new UrlParamDto { Key = string.Empty, Description = string.Empty, Value = string.Empty } });
+        public BindingList<UrlParamDto> UrlParamCollection { get; set; } = new BindingList<UrlParamDto>(new[] { new UrlParamDto { Key = string.Empty, Description = string.Empty, Value = string.Empty } });
 
 
 }
