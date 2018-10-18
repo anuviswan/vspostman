@@ -9,10 +9,22 @@
              xmlns:vc="clr-namespace:VsPostman.Convertor"
              d:DesignHeight="450" d:DesignWidth="800">
     <local:ResponseBase.Resources>
-        <vc:IsStatusValidConvertor x:Key="StatusConvertor"></vc:IsStatusValidConvertor>
-        <Style TargetType="TextBlock" x:Key="Normal">
+        <Style TargetType="Run" x:Key="StatusLabel">
             <Setter Property="Foreground" Value="Black" />
-            <Setter Property="Margin" Value="5,0,2,0"/>
+        </Style>
+
+        <Style TargetType="Run" x:Key="StatusResponse">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=ResponseStatusControl, Path=Response, Converter={vc:ResponseToBooleanConvertor}}" Value="True">
+                    <Setter Property="Foreground" Value="Green" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ElementName=ResponseStatusControl, Path=Response, Converter={vc:ResponseToBooleanConvertor}}" Value="False">
+                    <Setter Property="Foreground" Value="Red" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="StatusContent">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding ElementName=ResponseStatusControl,Path=Response,Converter={vc:ResponseToVisibilityConvertor}}" Value="Hidden">
                     <Setter Property="Visibility" Value="Hidden"/>
@@ -22,27 +34,18 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-
-        <Style TargetType="TextBlock" x:Key="OnValue">
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding ElementName=StatusResult, Path=Text, Converter={vc:IsStatusValidConvertor}}" Value="True">
-                    <Setter Property="Foreground" Value="Green" />
-                </DataTrigger>
-                <DataTrigger Binding="{Binding ElementName=StatusResult, Path=Text, Converter={vc:IsStatusValidConvertor}}" Value="False">
-                    <Setter Property="Foreground" Value="Red" />
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
     </local:ResponseBase.Resources>
 
     <Grid>
         <StackPanel x:Name="statusPanel" Orientation="Horizontal" HorizontalAlignment="Right" Visibility="Visible">
-            <TextBlock Style="{StaticResource Normal}" Text=" Status: "/>
-            <TextBlock x:Name="StatusResult" Style="{StaticResource OnValue}" Text="{Binding ElementName=ResponseStatusControl,Path=Response.StatusCode, StringFormat={}{0:D} {0}\&#x20;}"/>
-            <TextBlock Style="{StaticResource Normal}" Text=" Time: "/>
-            <TextBlock Style="{StaticResource OnValue}" Text="{Binding ElementName=ResponseStatusControl,Path=Response.ResponseTime,StringFormat={}{0:ff} ms\&#x20;}"/>
-            <TextBlock Style="{StaticResource Normal}" Text=" Size: "/>
-            <TextBlock Style="{StaticResource OnValue}" Text="{Binding ElementName=ResponseStatusControl,Path=Response.Length,StringFormat={}{0:D} B}"/>
+            <TextBlock Style="{StaticResource StatusContent}">
+                <Run Style="{StaticResource StatusLabel}" Text="Status : "/>
+                <Run Style="{StaticResource StatusResponse}" Text="{Binding ElementName=ResponseStatusControl,Path=Response.StatusCode,StringFormat={}{0:D}{0}}"/>
+                <Run Style="{StaticResource StatusLabel}" Text="Status : "/>
+                <Run Style="{StaticResource StatusResponse}" Text="{Binding ElementName=ResponseStatusControl,Path=Response.ResponseTime,StringFormat={}{0:ff} ms}"/>
+                <Run Style="{StaticResource StatusLabel}" Text="Status : "/>
+                <Run Style="{StaticResource StatusResponse}" Text="{Binding ElementName=ResponseStatusControl,Path=Response.Length,StringFormat={}{0:D} B}"/>
+            </TextBlock>
         </StackPanel>  
     </Grid>
 </local:ResponseBase>

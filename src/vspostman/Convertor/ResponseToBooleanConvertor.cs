@@ -2,21 +2,17 @@
 using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Markup;
+using VsPostman.HttpRequest;
 
 namespace VsPostman.Convertor
 {
-    public class IsStatusValidConvertor :MarkupExtension, IValueConverter
+    public class ResponseToBooleanConvertor :MarkupExtension, IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var returnValue = false;
-            if (string.IsNullOrEmpty(value as string)) return false;
-            if(value is string currentValue)
-            {
-                if (currentValue.Trim().Equals("200 OK"))
-                    return true;
-            }
-            return returnValue;
+            if (value == null) return false;
+            var currentValue = value as ResponseObject;
+            return currentValue.StatusCode == System.Net.HttpStatusCode.OK;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -26,7 +22,7 @@ namespace VsPostman.Convertor
 
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
-            return new IsStatusValidConvertor(); 
+            return new ResponseToBooleanConvertor(); 
         }
     }
 }
