@@ -1,22 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Markup;
-
 namespace VsPostman.Convertor
 {
-    public class IsStatusValidConvertor :MarkupExtension, IValueConverter
+    public class ResponseToVisibilityConvertor : MarkupExtension, IValueConverter
     {
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var returnValue = false;
-            if (string.IsNullOrEmpty(value as string)) return false;
-            if(value is string currentValue)
-            {
-                if (currentValue.Trim().Equals("200 OK"))
-                    return true;
-            }
-            return returnValue;
+            return value is null ? Visibility.Hidden : Visibility.Visible;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -26,7 +24,7 @@ namespace VsPostman.Convertor
 
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
-            return new IsStatusValidConvertor(); 
+            return new ResponseToVisibilityConvertor();
         }
     }
 }

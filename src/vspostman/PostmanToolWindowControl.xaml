@@ -119,14 +119,14 @@
 
         </TabControl>
         
-        <ResponseControls:ResponseStatus Grid.Row="4" rp:ResponseProperties.Response="{Binding Result,Mode=TwoWay}" HorizontalAlignment="Right"/>
+        <ResponseControls:ResponseStatus Grid.Row="4" Response="{Binding Result,Mode=TwoWay}" HorizontalAlignment="Right"/>
         <TabControl Grid.Column="0" Grid.Row="5">
             <TabItem Header="Body">
-                <ResponseControls:ResponseBody  rp:ResponseProperties.Response="{Binding Result,Mode=TwoWay}"/>
+                <ResponseControls:ResponseBody  Response="{Binding Result,Mode=TwoWay}"/>
             </TabItem>
             <TabItem Header="Cookies"></TabItem>
             <TabItem Header="Headers">
-                <ResponseControls:ResponseHeader  rp:ResponseProperties.Response="{Binding Result,Mode=TwoWay}"/>
+                <ResponseControls:ResponseHeader Response="{Binding Result,Mode=TwoWay}"/>
             </TabItem>
         </TabControl>
     </Grid>

@@ -19,16 +19,13 @@ namespace VsPostman.Controls.Response
     /// <summary>
     /// Interaction logic for ResponseBody.xaml
     /// </summary>
-    public partial class ResponseBody : ResponseBase,IHasResponse
+    public partial class ResponseBody : ResponseBase
     {
         public ResponseBody()
         {
             InitializeComponent();
         }
 
-        public void Update(ResponseObject responseObject)
-        {
-            txtResponseBody.Text = responseObject.ResponseString;
-        }
+       
     }
 }

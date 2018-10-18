@@ -19,7 +19,7 @@ namespace VsPostman.Controls.Response
     /// <summary>
     /// Interaction logic for ResponseStatus.xaml
     /// </summary>
-    public partial class ResponseStatus : ResponseBase, IHasResponse
+    public partial class ResponseStatus : ResponseBase//, IHasResponse
     {
         public ResponseStatus()
         {
@@ -27,20 +27,16 @@ namespace VsPostman.Controls.Response
 
         }
 
-        public void Update(ResponseObject responseObject)
-        {
-            statusPanel.Visibility = Visibility.Visible;
-            StatusResult.Text = $"{(int)responseObject.StatusCode} {responseObject.StatusCode.ToString()}";
-            Time.Text = $"{responseObject.ResponseTime.TotalMilliseconds:0.##} ms";
-            Size.Text = $"{responseObject.Length} B";
-        }
+        public bool IsVisibile => Response != null;
+
+        //public void Update(ResponseObject responseObject)
+        //{
+        //    statusPanel.Visibility = Visibility.Visible;
+        //    StatusResult.Text = $"{(int)responseObject.StatusCode} {responseObject.StatusCode.ToString()}";
+        //    Time.Text = $"{responseObject.ResponseTime.TotalMilliseconds:0.##} ms";
+        //    Size.Text = $"{responseObject.Length} B";
+        //}
     }
 
-    public class ResponseStatusViewModel : IHasResponse
-    {
-        public void Update(ResponseObject responseObject)
-        {
-            throw new NotImplementedException();
-        }
-    }
+  
 }

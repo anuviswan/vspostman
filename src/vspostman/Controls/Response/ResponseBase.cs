@@ -12,5 +12,19 @@ namespace VsPostman.Controls.Response
 {
     public class ResponseBase:UserControl
     {
+        public static readonly DependencyProperty ResponseProperty = DependencyProperty.Register(
+         "Response",
+         typeof(ResponseObject),
+         typeof(ResponseBase),
+         new PropertyMetadata(null));
+
+     
+
+        public ResponseObject Response
+        {
+            get { return (ResponseObject)GetValue(ResponseProperty); }
+            set { SetValue(ResponseProperty, value); }
+        }
+
     }
 }

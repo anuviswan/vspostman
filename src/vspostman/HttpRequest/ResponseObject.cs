@@ -16,5 +16,7 @@ namespace VsPostman.HttpRequest
         public string ContendType { get; set; }
         public string ResponseString { get; set; }
         public long Length { get; set; }
+
+        public Dictionary<string, string> HeaderCollection => Headers.Cast<string>().ToDictionary(x => x, v => Headers[v]);
     }
 }

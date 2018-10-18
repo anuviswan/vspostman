@@ -20,14 +20,14 @@ namespace VsPostman.Controls.Response
     /// <summary>
     /// Interaction logic for ResponseHeader.xaml
     /// </summary>
-    public partial class ResponseHeader : ResponseBase, IHasResponse
+    public partial class ResponseHeader : ResponseBase///, IHasResponse
     {
         public ResponseHeader() => InitializeComponent();
 
-        public void Update(ResponseObject responseObject) 
-        {
-            dgHeaders.ItemsSource = responseObject.Headers.Cast<string>().ToDictionary(x => x, v => responseObject.Headers[v]);
-        }
+        //public void Update(ResponseObject responseObject) 
+        //{
+        //    dgHeaders.ItemsSource = responseObject.Headers.Cast<string>().ToDictionary(x => x, v => responseObject.Headers[v]);
+        //}
 
     }
 }

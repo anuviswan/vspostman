@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace VsPostman.HttpRequest
@@ -41,7 +42,7 @@ namespace VsPostman.HttpRequest
                 {
                     Headers = response.Headers,
                     ContendType = response.ContentType,
-                    Length = response.ContentLength,
+                    Length = response.ContentLength < 0 ? Encoding.Unicode.GetByteCount(returnValue): response.ContentLength,
                     ResponseString = returnValue,
                     ResponseTime = watch.Elapsed,
                     StatusCode = response.StatusCode

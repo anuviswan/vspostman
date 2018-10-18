@@ -68,6 +68,7 @@
       <DependentUpon>ResponseStatus.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Response\ResponseType.cs" />
+    <Compile Include="Convertor\ResponseToVisibilityConvertor.cs" />
     <Compile Include="Convertor\IsStatusValidConvertor.cs" />
     <Compile Include="Dto\UrlParamDto.cs" />
     <Compile Include="PropertyChangeBase.cs" />
