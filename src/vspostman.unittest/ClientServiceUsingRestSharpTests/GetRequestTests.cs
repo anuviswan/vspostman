@@ -27,7 +27,8 @@ namespace vspostman.unittest.ClientServiceUsingRestSharpTests
                   It.IsAny<Action<IRestResponse, RestRequestAsyncHandle>>()))
               .Callback<IRestRequest, Action<IRestResponse, RestRequestAsyncHandle>>((request, callback) =>
               {
-                  callback(new RestResponse { StatusCode = HttpStatusCode.OK }, null);
+
+                  callback(new RestResponse { Content= expected }, null);
               });
 
 
@@ -53,6 +54,7 @@ namespace vspostman.unittest.ClientServiceUsingRestSharpTests
                   It.IsAny<Action<IRestResponse, RestRequestAsyncHandle>>()))
               .Callback<IRestRequest, Action<IRestResponse, RestRequestAsyncHandle>>((request, callback) =>
               {
+
                   callback(new RestResponse { StatusCode = HttpStatusCode.OK }, null);
               });
 
@@ -118,13 +120,12 @@ namespace vspostman.unittest.ClientServiceUsingRestSharpTests
             var url = "http://www.google.com";
 
             Mock<IRestClient> restClient = new Mock<IRestClient>();
-            restClient
-              .Setup(x => x.ExecuteAsync(
-                  It.IsAny<IRestRequest>(),
-                  It.IsAny<Action<IRestResponse, RestRequestAsyncHandle>>()))
+            restClient.Setup(x => x.ExecuteAsync(It.IsAny<IRestRequest>(),It.IsAny<Action<IRestResponse, RestRequestAsyncHandle>>()))
               .Callback<IRestRequest, Action<IRestResponse, RestRequestAsyncHandle>>((request, callback) =>
               {
-                  callback(new RestResponse { StatusCode = HttpStatusCode.OK, Content = $"{url}?{paramKey}={paramValue}" }, null);
+                  var responseMock = new Mock<IRestResponse<string>>();
+                  responseMock.Setup(r => r.Content).Returns($"{url}?{paramKey}={paramValue}");
+                  callback(responseMock.Object, null);
               });
 
             // act
@@ -136,5 +137,8 @@ namespace vspostman.unittest.ClientServiceUsingRestSharpTests
             Assert.IsTrue(actualResponse.ResponseString.Contains(url));
             Assert.AreEqual($"{url}?{paramKey}={paramValue}", actualResponse.ResponseString);
         }
+
+        
+        
     }
 }
