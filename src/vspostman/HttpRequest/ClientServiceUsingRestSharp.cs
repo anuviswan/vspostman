@@ -10,13 +10,13 @@ namespace VsPostman.HttpRequest
     public class ClientServiceUsingRestSharp : IRequest
     {
         private RestRequest _restRequest;
-        private RestClient _restClient;
+        private IRestClient _restClient;
         private IDictionary<string, dynamic> _parameterDictionary;
 
-        public ClientServiceUsingRestSharp()
+        public ClientServiceUsingRestSharp(IRestClient client=null)
         {
+            _restClient = client ?? new RestClient();
             _restRequest = new RestRequest();
-            _restClient = new RestClient();
         }
 
         public string ParameterString => throw new NotImplementedException();
