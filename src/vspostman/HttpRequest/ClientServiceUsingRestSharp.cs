@@ -1,6 +1,7 @@
 ﻿using RestSharp;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -45,22 +46,15 @@ namespace VsPostman.HttpRequest
             if(_parameterDictionary?.Count==0)
                 _restRequest.Parameters.AddRange(_parameterDictionary?.Select(x => new Parameter() {Name = x.Key, Value = x.Value }));
             var tcs = new TaskCompletionSource<ResponseObject>();
-            //var response = await _restClient.ExecuteTaskAsync(_restRequest);
-
-            //_returnValue.ContendType = response.ContentType;
-            //_returnValue.ResponseString = response.Content;
-            //_returnValue.StatusCode = response.StatusCode;
-            //_returnValue.StatusDescription = response.StatusDescription;
-            //if (response.Headers != null)
-            //    _returnValue.Headers = response.Headers.ToDictionary(x => x.Name, y => y.Value as string);
-            //_returnValue.ResponseTime = new TimeSpan(1000);
-
+            var watch = Stopwatch.StartNew();
             _restClient.ExecuteAsync(_restRequest, response =>
              {
                  _returnValue.ContendType = response.ContentType;
                  _returnValue.ResponseString = response.Content;
                  _returnValue.StatusCode = response.StatusCode;
                  _returnValue.StatusDescription = response.StatusDescription;
+                 _returnValue.ResponseTime = watch.Elapsed;
+                 _returnValue.Length = response.ContentLength;
                  if (response.Headers != null)
                      _returnValue.Headers = response.Headers.ToDictionary(x => x.Name, y => y.Value as string);
                  _returnValue.ResponseTime = new TimeSpan(1000);
