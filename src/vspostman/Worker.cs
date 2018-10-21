@@ -11,7 +11,7 @@ namespace VsPostman
     {
         public async Task<ResponseObject> SendGetRequest(string url,IDictionary<string,string> parameters)
         {
-            var client = new ClientService(new HttpWebRequestFactory());
+            var client = new ClientServiceUsingRestSharp();
             
 
             foreach (var item in parameters.Keys)

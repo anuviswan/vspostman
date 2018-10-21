@@ -9,14 +9,12 @@ namespace VsPostman.HttpRequest
 {
     public class ResponseObject: PropertyChangeBase
     {
-        public WebHeaderCollection Headers { get; set; }
+        public Dictionary<string,string> Headers { get; set; }
         public HttpStatusCode StatusCode { get; set; }
         public string StatusDescription { get; set; }
         public TimeSpan ResponseTime { get; set; }
         public string ContendType { get; set; }
         public string ResponseString { get; set; }
         public long Length { get; set; }
-
-        public Dictionary<string, string> HeaderCollection => Headers.Cast<string>().ToDictionary(x => x, v => Headers[v]);
     }
 }

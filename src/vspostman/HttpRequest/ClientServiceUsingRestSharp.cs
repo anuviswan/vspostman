@@ -39,8 +39,8 @@ namespace VsPostman.HttpRequest
         {
             if (string.IsNullOrWhiteSpace(url) || _parameterDictionary.Values.Contains(null)) throw new ArgumentNullException();
 
+            _restClient.BaseUrl = new Uri(url);
             _restRequest.Method = Method.GET;
-            _restRequest.Resource = url;
             var _returnValue = new ResponseObject();
             if(_parameterDictionary?.Count==0)
                 _restRequest.Parameters.AddRange(_parameterDictionary?.Select(x => new Parameter() {Name = x.Key, Value = x.Value }));
@@ -50,17 +50,8 @@ namespace VsPostman.HttpRequest
                 _returnValue.ResponseString = response.Content;
                 _returnValue.StatusCode = response.StatusCode;
                 _returnValue.StatusDescription = response.StatusDescription;
-
-                if(response.Headers?.Count>0)
-                {
-                    var headerCollection = new WebHeaderCollection();
-                    foreach (var header in response.Headers)
-                    {
-                        headerCollection.Add((HttpRequestHeader)Enum.Parse(typeof(HttpRequestHeader), header.Name), header.Value as string);
-                    }
-                    _returnValue.Headers = headerCollection;
-                }
-
+                if(response.Headers!=null)
+                    _returnValue.Headers = response.Headers.ToDictionary(x => x.Name, y => y.Value as string);
                 _returnValue.ResponseTime = new TimeSpan(1000);
             });
             return Task.FromResult<ResponseObject>(_returnValue);
