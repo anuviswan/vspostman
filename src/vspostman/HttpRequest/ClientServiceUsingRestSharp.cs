@@ -35,7 +35,7 @@ namespace VsPostman.HttpRequest
         }
 
 
-        public Task<ResponseObject> Get(string url)
+        public async Task<ResponseObject> Get(string url)
         {
             if (string.IsNullOrWhiteSpace(url) || _parameterDictionary.Values.Contains(null)) throw new ArgumentNullException();
 
@@ -44,17 +44,30 @@ namespace VsPostman.HttpRequest
             var _returnValue = new ResponseObject();
             if(_parameterDictionary?.Count==0)
                 _restRequest.Parameters.AddRange(_parameterDictionary?.Select(x => new Parameter() {Name = x.Key, Value = x.Value }));
+            var tcs = new TaskCompletionSource<ResponseObject>();
+            //var response = await _restClient.ExecuteTaskAsync(_restRequest);
+
+            //_returnValue.ContendType = response.ContentType;
+            //_returnValue.ResponseString = response.Content;
+            //_returnValue.StatusCode = response.StatusCode;
+            //_returnValue.StatusDescription = response.StatusDescription;
+            //if (response.Headers != null)
+            //    _returnValue.Headers = response.Headers.ToDictionary(x => x.Name, y => y.Value as string);
+            //_returnValue.ResponseTime = new TimeSpan(1000);
+
             _restClient.ExecuteAsync(_restRequest, response =>
-            {
-                _returnValue.ContendType = response.ContentType;
-                _returnValue.ResponseString = response.Content;
-                _returnValue.StatusCode = response.StatusCode;
-                _returnValue.StatusDescription = response.StatusDescription;
-                if(response.Headers!=null)
-                    _returnValue.Headers = response.Headers.ToDictionary(x => x.Name, y => y.Value as string);
-                _returnValue.ResponseTime = new TimeSpan(1000);
-            });
-            return Task.FromResult<ResponseObject>(_returnValue);
+             {
+                 _returnValue.ContendType = response.ContentType;
+                 _returnValue.ResponseString = response.Content;
+                 _returnValue.StatusCode = response.StatusCode;
+                 _returnValue.StatusDescription = response.StatusDescription;
+                 if (response.Headers != null)
+                     _returnValue.Headers = response.Headers.ToDictionary(x => x.Name, y => y.Value as string);
+                 _returnValue.ResponseTime = new TimeSpan(1000);
+
+                 tcs.SetResult(_returnValue);
+             });
+            return await tcs.Task;
         }
     }
 }

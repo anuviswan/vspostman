@@ -40,7 +40,7 @@ namespace VsPostman.HttpRequest
                 var returnValue = await reader.ReadToEndAsync();
                 return new ResponseObject
                 {
-                    Headers = response.Headers.Cast<string>().ToDictionary(x => x, v =>response.Headers[v]),
+                    Headers = response.Headers?.Cast<string>().ToDictionary(x => x, v =>response.Headers[v]),
                     ContendType = response.ContentType,
                     Length = response.ContentLength < 0 ? Encoding.Unicode.GetByteCount(returnValue): response.ContentLength,
                     ResponseString = returnValue,
