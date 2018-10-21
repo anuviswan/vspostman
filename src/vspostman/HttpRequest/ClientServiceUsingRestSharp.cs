@@ -57,7 +57,6 @@ namespace VsPostman.HttpRequest
                  _returnValue.Length = response.ContentLength;
                  if (response.Headers != null)
                      _returnValue.Headers = response.Headers.ToDictionary(x => x.Name, y => y.Value as string);
-                 _returnValue.ResponseTime = new TimeSpan(1000);
 
                  tcs.SetResult(_returnValue);
              });
