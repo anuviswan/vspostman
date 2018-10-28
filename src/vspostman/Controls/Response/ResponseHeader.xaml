@@ -8,7 +8,7 @@
              x:Name="ResponseHeaderControl"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <DataGrid x:Name="dgHeaders" ColumnWidth="30" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding ElementName=ResponseHeaderControl,Path=Response.HeaderCollection}">
+        <DataGrid x:Name="dgHeaders" ColumnWidth="30" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding ElementName=ResponseHeaderControl,Path=Response.Headers}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Header" Binding="{Binding Key}" />
                 <DataGridTextColumn Header="Value" Binding="{Binding Value}" />
