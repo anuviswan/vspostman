@@ -47,7 +47,7 @@
             <ComboBox Grid.Column="0" ItemsSource="{Binding Source={StaticResource dataFromEnum}}" IsSynchronizedWithCurrentItem="True" SelectedItem="{Binding RequestType,UpdateSourceTrigger=PropertyChanged}" x:Name="httpType"/>
             <Grid Grid.Column="1" VerticalAlignment="Center" >
                 <TextBox  Text="{Binding Url,UpdateSourceTrigger=PropertyChanged}" 
-                         VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="requestedUrl" Height="{Binding ElementName=httpType, Path=ActualHeight}"  />
+                         VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="requestedUrl" Height="{Binding ElementName=httpType, Path=ActualHeight}" />
                 <TextBlock IsHitTestVisible="False" Text="Enter Url Here" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
                     <TextBlock.Style>
                         <Style TargetType="{x:Type TextBlock}">
@@ -64,48 +64,20 @@
            
             <Button Grid.Column="2" Content="Send" Style="{StaticResource MediumButton}" Command="{Binding SendRequestCommand}" />
         </Grid>
-        <StackPanel Orientation="Horizontal" Grid.Column="0"  Grid.Row="2" HorizontalAlignment="Right" >
-            <ToggleButton Content="JSON" Style="{StaticResource ToggleButton}"/>
-            <ToggleButton Content="XML" Style="{StaticResource ToggleButton}"/>
-        </StackPanel>
+
         <TabControl Grid.Column="0" Grid.Row="3">
-            <TabItem Header="Authorization"/>
-            <TabItem Header="Headers"/>
-            <TabItem Header="Body"/>
-            <TabItem Header="Prerequest Scripts"/>
             <TabItem Header="Url Params">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <DataGrid Grid.Row="0" Name="dgUrlParams" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"
-                              CurrentCellChanged="dataGrid_CurrentCellChanged" CellEditEnding="dataGrid_CellEditEnding" IsSynchronizedWithCurrentItem="True"
+                    <DataGrid Grid.Row="0" Name="dgUrlParams" AutoGenerateColumns="False"  IsSynchronizedWithCurrentItem="True"
                               ItemsSource="{Binding UrlParamCollection,Mode=TwoWay,UpdateSourceTrigger=LostFocus}">
                         <DataGrid.Columns>
-                            <DataGridTemplateColumn Header="Key" MinWidth="100">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBox Text="{Binding Key,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-
-                            <DataGridTemplateColumn Header="Value" MinWidth="100">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBox Text="{Binding Value,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-
-                            <DataGridTemplateColumn Header="Description" MinWidth="200">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBox Text="{Binding Description,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Key" Width="100" Binding="{Binding Key,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+                            <DataGridTextColumn Header="Value" Width="100" Binding="{Binding Value,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+                            <DataGridTextColumn Header="Description" Width="200" Binding="{Binding Description,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
                         </DataGrid.Columns>
                     </DataGrid>
 

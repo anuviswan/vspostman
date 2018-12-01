@@ -25,7 +25,7 @@ namespace VsPostman
             UrlParamCollection.Add(new UrlParamDto { Key = string.Empty, Description = string.Empty, Value = string.Empty });
         }
 
-        public eRequestType RequestType { get; set; }
+        public eRequestType RequestType { get; set; } = eRequestType.GET;
         
         public string Url { get; set; } 
         public ICommand SendRequestCommand{get;set;}
