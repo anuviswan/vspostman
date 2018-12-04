@@ -56,6 +56,16 @@ namespace VsPostman.HttpRequest
                 _parameterDictionary.Add(parameterName, value);
         }
         public void ClearParameters() => _parameterDictionary.Clear();
+
+        public void AddJsonBody(string jsonString)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ResponseObject> Post(string url)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

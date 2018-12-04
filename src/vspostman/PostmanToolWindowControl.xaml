@@ -72,7 +72,7 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <DataGrid Grid.Row="0" Name="dgUrlParams" AutoGenerateColumns="False"  IsSynchronizedWithCurrentItem="True"
+                    <DataGrid Grid.Row="0" Name="dgUrlParams" AutoGenerateColumns="False"  IsSynchronizedWithCurrentItem="True" CanUserAddRows="True" 
                               ItemsSource="{Binding UrlParamCollection,Mode=TwoWay,UpdateSourceTrigger=LostFocus}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Key" Width="100" Binding="{Binding Key,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>

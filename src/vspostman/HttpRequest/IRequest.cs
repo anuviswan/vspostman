@@ -13,5 +13,7 @@ namespace VsPostman.HttpRequest
         void ClearParameters();
         Task<ResponseObject> Get(string url);
         string ParameterString { get; }
+        void AddJsonBody(string jsonString);
+        Task<ResponseObject> Post(string url);
     }
 }

@@ -14,6 +14,7 @@ namespace VsPostman.HttpRequest
         private RestRequest _restRequest;
         private IRestClient _restClient;
         private IDictionary<string, dynamic> _parameterDictionary;
+        private string _jsonBody;
 
         public ClientServiceUsingRestSharp(IRestClient client=null)
         {
@@ -23,6 +24,11 @@ namespace VsPostman.HttpRequest
         }
 
         public string ParameterString => throw new NotImplementedException();
+
+        public void AddJsonBody(string jsonString)
+        {
+            _jsonBody = jsonString;
+        }
 
         public void AddParameter(string parameterName, dynamic value)
         {
@@ -60,6 +66,40 @@ namespace VsPostman.HttpRequest
 
                  tcs.SetResult(_returnValue);
              });
+            return await tcs.Task;
+        }
+
+
+        public async Task<ResponseObject> Post(string url)
+        {
+            if (string.IsNullOrWhiteSpace(url) || _parameterDictionary.Values.Contains(null)) throw new ArgumentNullException();
+
+            _restClient.BaseUrl = new Uri(url);
+            _restRequest.Method = Method.POST;
+            var _returnValue = new ResponseObject();
+
+            // Add Url Params
+            if (_parameterDictionary?.Count == 0)
+                _restRequest.Parameters.AddRange(_parameterDictionary?.Select(x => new Parameter() { Name = x.Key, Value = x.Value }));
+
+            if(!string.IsNullOrEmpty(_jsonBody))
+                _restRequest.AddParameter("application/json", _jsonBody, ParameterType.RequestBody);
+
+            var tcs = new TaskCompletionSource<ResponseObject>();
+            var watch = Stopwatch.StartNew();
+            _restClient.ExecuteAsync(_restRequest, response =>
+            {
+                _returnValue.ContendType = response.ContentType;
+                _returnValue.ResponseString = response.Content;
+                _returnValue.StatusCode = response.StatusCode;
+                _returnValue.StatusDescription = response.StatusDescription;
+                _returnValue.ResponseTime = watch.Elapsed;
+                _returnValue.Length = response.ContentLength;
+                if (response.Headers != null)
+                    _returnValue.Headers = response.Headers.ToDictionary(x => x.Name, y => y.Value as string);
+
+                tcs.SetResult(_returnValue);
+            });
             return await tcs.Task;
         }
     }
