@@ -14,12 +14,14 @@ namespace VsPostman
 {
     public class PostmanToolWindowControlViewModel : PropertyChangeBase
     {
+        private bool _isBusy = false;
         public PostmanToolWindowControlViewModel ()
 	    {
-            SendRequestCommand = new SimpleCommandAsync(SendRequestAsync);
+            SendRequestCommand = new SimpleCommandAsync(SendRequestAsync,()=>IsBusy());
             AddUrlParamCommand = new SimpleCommand(AddUrlParam);
 	    }
 
+        public bool IsBusy() => _isBusy == false;
         private void AddUrlParam()
         {
             UrlParamCollection.Add(new UrlParamDto { Key = string.Empty, Description = string.Empty, Value = string.Empty });
@@ -31,23 +33,41 @@ namespace VsPostman
         public ICommand SendRequestCommand{get;set;}
         public ICommand AddUrlParamCommand { get; set; }
 
+
         public async Task SendRequestAsync()
         {
-            var worker = new Worker();
-            switch (RequestType)
+            try
             {
-                case eRequestType.POST:
-                    break;
-                case eRequestType.GET:
-                    var result = await worker.SendGetRequest(Url, UrlParamCollection.ToDictionary(x => x.Key, y => y.Value));
-                    UpdateUIWithResult(result);
-                    break;
-                case eRequestType.PUT:
-                    break;
-                case eRequestType.DELETE:
-                    break;
-                default:
-                    break;
+                var worker = new Worker();
+                _isBusy = true;
+                var urlParameterDictionary = UrlParamCollection.ToDictionary(x => x.Key, y => y.Value);
+                switch (RequestType)
+                {
+                    case eRequestType.POST:
+                        {
+                            var result = await worker.SendGetRequest(Url, urlParameterDictionary);
+                            UpdateUIWithResult(result);
+                            break;
+                        }
+                    case eRequestType.GET:
+                        {
+                            var result = await worker.SendPostRequest(Url, urlParameterDictionary);
+                            UpdateUIWithResult(result);
+                            break;
+                        }
+                    case eRequestType.PUT:
+                        break;
+                    case eRequestType.DELETE:
+                        break;
+                    default:
+                        break;
+                }
+                _isBusy = false;
+            }
+            catch (Exception e)
+            {
+
+                throw;
             }
         }
 

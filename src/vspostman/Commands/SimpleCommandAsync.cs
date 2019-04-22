@@ -20,6 +20,12 @@ namespace VsPostman.Commands
             _execute = execute;
         }
         public bool CanExecute(object parameter) => _canExecute == null || _canExecute();
+
+        public void RaiseCanExecuteChanged()
+        {
+            if (CanExecuteChanged != null)
+                CanExecuteChanged(this, new EventArgs());
+        }
         public async void Execute(object parameter) => await ExecuteAsync(parameter);
 
         public async Task ExecuteAsync(object parameter)=> await _execute();
