@@ -7,12 +7,14 @@
             xmlns:StyleAlias="clr-namespace:VsPostman.HttpRequest"
              xmlns:vm="clr-namespace:VsPostman"
              xmlns:ResponseControls="clr-namespace:VsPostman.Controls.Response"
+             xmlns:shell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
              xmlns:rp="clr-namespace:VsPostman.Behaviors"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance {x:Type vm:PostmanToolWindowControlViewModel},  IsDesignTimeCreatable=True}"
              d:DesignHeight="300" d:DesignWidth="300" 
              Name="VsPostmanWindow">
     <UserControl.Resources>
+
         <Style x:Key="MediumButton" TargetType="Button">
             <Setter Property="Width" Value="100"/>
         </Style>
@@ -27,79 +29,86 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
     </UserControl.Resources>
-    <Grid>
+    <Border x:Name="NotificationWindow" 
+			Background="{DynamicResource {x:Static shell:VsBrushes.CommandBarOptionsBackgroundKey}}"
+			TextElement.Foreground="{DynamicResource {x:Static shell:VsBrushes.CommandBarTextActiveKey}}"
+			BorderBrush="{DynamicResource {x:Static shell:VsBrushes.DropDownBorderKey}}"
+			BorderThickness="1">
+        <Grid>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="10"/>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid Grid.Column="0" Grid.Row="1" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="100"/>
-            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Column="0" Grid.Row="1" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
 
-            <ComboBox Grid.Column="0" ItemsSource="{Binding Source={StaticResource dataFromEnum}}" IsSynchronizedWithCurrentItem="True" SelectedItem="{Binding RequestType,UpdateSourceTrigger=PropertyChanged}" x:Name="httpType"/>
-            <Grid Grid.Column="1" VerticalAlignment="Center" >
-                <TextBox  Text="{Binding Url,UpdateSourceTrigger=PropertyChanged}" 
+                <ComboBox Grid.Column="0" ItemsSource="{Binding Source={StaticResource dataFromEnum}}" IsSynchronizedWithCurrentItem="True" SelectedItem="{Binding RequestType,UpdateSourceTrigger=PropertyChanged}" x:Name="httpType"/>
+                <Grid Grid.Column="1" VerticalAlignment="Center" >
+                    <TextBox  Text="{Binding Url,UpdateSourceTrigger=PropertyChanged}" 
                          VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="requestedUrl" Height="{Binding ElementName=httpType, Path=ActualHeight}" />
-                <TextBlock IsHitTestVisible="False" Text="Enter Url Here" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
-                    <TextBlock.Style>
-                        <Style TargetType="{x:Type TextBlock}">
-                            <Setter Property="Visibility" Value="Collapsed"/>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Text, ElementName=requestedUrl}" Value="">
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                </TextBlock>
-            </Grid>
-           
-            <Button Grid.Column="2" Content="Send" Style="{StaticResource MediumButton}" Command="{Binding SendRequestCommand}" />
-        </Grid>
-
-        <TabControl Grid.Column="0" Grid.Row="3">
-            <TabItem Header="Url Params">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <DataGrid Grid.Row="0" Name="dgUrlParams" AutoGenerateColumns="False"  IsSynchronizedWithCurrentItem="True" CanUserAddRows="True" 
-                              ItemsSource="{Binding UrlParamCollection,Mode=TwoWay,UpdateSourceTrigger=LostFocus}">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Key" Width="100" Binding="{Binding Key,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
-                            <DataGridTextColumn Header="Value" Width="100" Binding="{Binding Value,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
-                            <DataGridTextColumn Header="Description" Width="200" Binding="{Binding Description,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="1">
-                        <Button Grid.Row="1" Content="+" Width="30" Height="30" HorizontalAlignment="Left" Command="{Binding AddUrlParamCommand}"></Button>
-                        <Button Grid.Row="1" Content="-" Width="30" Height="30" HorizontalAlignment="Left"></Button>
-                    </StackPanel>
+                    <TextBlock IsHitTestVisible="False" Text="Enter Url Here" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Text, ElementName=requestedUrl}" Value="">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
                 </Grid>
 
-            </TabItem>
+                <Button Grid.Column="2" Content="Send" Style="{StaticResource MediumButton}" Command="{Binding SendRequestCommand}" />
+            </Grid>
 
-        </TabControl>
-        
-        <ResponseControls:ResponseStatus Grid.Row="4" Response="{Binding Result,Mode=TwoWay}" HorizontalAlignment="Right"/>
-        <TabControl Grid.Column="0" Grid.Row="5">
-            <TabItem Header="Body">
-                <ResponseControls:ResponseBody  Response="{Binding Result,Mode=TwoWay}"/>
-            </TabItem>
-            <TabItem Header="Cookies"></TabItem>
-            <TabItem Header="Headers">
-                <ResponseControls:ResponseHeader Response="{Binding Result,Mode=TwoWay}"/>
-            </TabItem>
-        </TabControl>
-    </Grid>
+            <TabControl Grid.Column="0" Grid.Row="3">
+                <TabItem Header="Url Params">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <DataGrid Grid.Row="0" Name="dgUrlParams" AutoGenerateColumns="False"  IsSynchronizedWithCurrentItem="True" CanUserAddRows="True" 
+                              ItemsSource="{Binding UrlParamCollection,Mode=TwoWay,UpdateSourceTrigger=LostFocus}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Key" Width="100" Binding="{Binding Key,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+                                <DataGridTextColumn Header="Value" Width="100" Binding="{Binding Value,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+                                <DataGridTextColumn Header="Description" Width="200" Binding="{Binding Description,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="1">
+                            <Button Grid.Row="1" Content="+" Width="30" Height="30" HorizontalAlignment="Left" Command="{Binding AddUrlParamCommand}"></Button>
+                            <Button Grid.Row="1" Content="-" Width="30" Height="30" HorizontalAlignment="Left"></Button>
+                        </StackPanel>
+                    </Grid>
+
+                </TabItem>
+
+            </TabControl>
+
+            <ResponseControls:ResponseStatus Grid.Row="4" Response="{Binding Result,Mode=TwoWay}" HorizontalAlignment="Right"/>
+            <TabControl Grid.Column="0" Grid.Row="5">
+                <TabItem Header="Body">
+                    <ResponseControls:ResponseBody  Response="{Binding Result,Mode=TwoWay}"/>
+                </TabItem>
+                <TabItem Header="Cookies"></TabItem>
+                <TabItem Header="Headers">
+                    <ResponseControls:ResponseHeader Response="{Binding Result,Mode=TwoWay}"/>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </Border>
+  
 </UserControl>
